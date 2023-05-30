@@ -1,0 +1,9 @@
+VAR
+	fbDTGetTime : DTGetTime;
+	TP_PulseOnSlow : TP;
+	TP_PulseOffSlow : TP;
+	TP_PulseOnMed : TP;
+	TP_PulseOffMed : TP;
+	TP_PulseOnFlash : TP;
+	TP_PulseOffFlash : TP;
+END_VAR

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vdef:Visualization id="mvDemoTrak" autoUpdate="true" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
+  <StartPage pageRefId="PgMain" />
+  <Pages>
+    <Page refId="PgMain" />
+    <Page refId="PgDiag1" />
+    <Page refId="PgDiag2" />
+  </Pages>
+  <Navigations />
+  <BindingsSets>
+    <BindingsSet refId="BiDashboard" />
+  </BindingsSets>
+  <EventBindingsSets />
+  <Dialogs />
+  <Contents>
+    <Content refId="ContDash" />
+    <Content refId="ContHeader" />
+    <Content refId="ContNavigation" />
+    <Content refId="ContDiag1" />
+    <Content refId="ContDiag2" />
+  </Contents>
+  <SnippetsSets />
+  <VariablesSets />
+  <ExpressionsSets />
+  <Configurations>
+    <Configuration key="activityCount" value="false" />
+    <Gestures>
+      <!--<SystemGesture1 touchPoints="2" />
+		  <SystemGesture2 touchPoints="2" />
+		  <SystemGesture3 touchPoints="2" />-->
+    </Gestures>
+    <VirtualKeyboards>
+      <!--<InputProcessing onKeyDown="true" />-->
+    </VirtualKeyboards>
+  </Configurations>
+</vdef:Visualization>

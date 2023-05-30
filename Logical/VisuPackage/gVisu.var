@@ -1,0 +1,3 @@
+VAR
+	gVisu : {REDUND_UNREPLICABLE} gVisu_type;
+END_VAR
