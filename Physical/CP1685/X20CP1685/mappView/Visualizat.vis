@@ -5,12 +5,18 @@
     <Page refId="PgMain" />
     <Page refId="PgDiag1" />
     <Page refId="PgDiag2" />
+    <Page refId="PgSDM" />
+    <Page refId="PgSettings" />
+    <Page refId="PgAlarms" />
   </Pages>
   <Navigations />
   <BindingsSets>
     <BindingsSet refId="BiDashboard" />
+    <BindingsSet refId="BiAlarms" />
   </BindingsSets>
-  <EventBindingsSets />
+  <EventBindingsSets>
+    <EventBindingsSet refId="EvBiAlarms" />
+  </EventBindingsSets>
   <Dialogs />
   <Contents>
     <Content refId="ContDash" />
@@ -18,12 +24,17 @@
     <Content refId="ContNavigation" />
     <Content refId="ContDiag1" />
     <Content refId="ContDiag2" />
+    <Content refId="ContSDM" />
+    <Content refId="ContSettings" />
+    <Content refId="ContAlList" />
+    <Content refId="ContAlHist" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />
   <ExpressionsSets />
   <Configurations>
     <Configuration key="activityCount" value="false" />
+    <Configuration key="zoom" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />
 		  <SystemGesture2 touchPoints="2" />

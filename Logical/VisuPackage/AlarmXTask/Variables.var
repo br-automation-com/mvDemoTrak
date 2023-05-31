@@ -1,0 +1,11 @@
+VAR
+	tmpErrorID : UDINT;
+	fbMpAlarmXCore : MpAlarmXCore;
+	fbMpAlarmXHistory : MpAlarmXHistory;
+	fbMpAlarmXListUI : MpAlarmXListUI;
+	fbMpAlarmXAckAll : MpAlarmXAcknowledgeAll;
+	stAlListUISetup : MpAlarmXListUISetupType;
+	stAlListUIConnect : MpAlarmXListUIConnectType;
+	AlarmStatus : ALARM_STATUS_Enum;
+	TON_ErrorReset : TON;
+END_VAR

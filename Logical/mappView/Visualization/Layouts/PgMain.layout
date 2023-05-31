@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ldef:Layout id="layoutPgMain" height="1092" width="2000" xmlns:ldef="http://www.br-automation.com/iat2015/layoutDefinition/v2">
+<ldef:Layout id="layoutPgMain" height="1540" width="2105" xmlns:ldef="http://www.br-automation.com/iat2015/layoutDefinition/v2">
   <Areas>
-    <Area id="AreaNavigation" height="1092" width="100" left="0" top="0" zIndex="0" />
-    <Area id="AreaHeader" height="100" width="1880" left="100" top="0" zIndex="1" />
-    <Area id="AreaMain" height="992" width="1880" left="100" top="100" zIndex="2" />
+    <Area id="AreaNavigation" height="1540" width="125" left="0" top="0" zIndex="0" />
+    <Area id="AreaHeader" height="125" width="1980" left="125" top="0" zIndex="1" />
+    <Area id="AreaMain" height="1415" width="1980" left="125" top="125" zIndex="2" />
   </Areas>
 </ldef:Layout>

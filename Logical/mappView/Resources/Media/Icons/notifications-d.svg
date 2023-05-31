@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="56px"
+	 height="56px" viewBox="0 0 56 56" enable-background="new 0 0 56 56" xml:space="preserve">
+<g id="HG" display="none">
+	<g display="inline">
+		<rect x="-225" y="-492" fill="#333333" width="594" height="840"/>
+	</g>
+	<g id="Texte" display="inline">
+	</g>
+	<g id="Nummerierung" display="inline">
+		<g>
+			<g>
+				<g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g id="Raster_1_" display="inline">
+		<g id="Raster_Entwürfe_3_" opacity="0.1">
+			<g>
+				<g>
+					<path fill="#FFFFFF" d="M56,0v56H0V0H56 M57-1h-1H0h-1v1v56v1h1h56h1v-1V0V-1L57-1z"/>
+				</g>
+			</g>
+		</g>
+		<g id="Raster_Entwürfe_2_" opacity="0.1">
+			<g>
+				<g>
+					<path fill="#FFFFFF" d="M48,8v40H8V8H48 M49,7h-1H8H7v1v40v1h1h40h1v-1V8V7L49,7z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g id="Header_1_" display="inline">
+	</g>
+</g>
+<g id="Baustelle">
+	<g>
+		<g>
+			<g>
+				<path fill="#3E3E3E" d="M21,31h2v-2h-2V31z M40,16H16c-1.65,0-3,1.35-3,3v15c0,1.65,1.35,3,3,3h3v5l9-5h12c1.65,0,3-1.35,3-3V19
+					C43,17.35,41.65,16,40,16z M30,25h6v1h-6V25z M28.301,32H16c-0.55,0-0.786-0.396-0.525-0.88l6.069-11.24
+					c0.261-0.484,0.695-0.487,0.964-0.008l6.304,11.256C29.081,31.607,28.851,32,28.301,32z M38,29h-8v-1h8V29z M39.5,23H30v-1h9.5
+					V23z M21,28h2v-4h-2V28z"/>
+			</g>
+		</g>
+		<rect fill="none" width="56" height="56"/>
+	</g>
+</g>
+<g id="Slices">
+</g>
+</svg>

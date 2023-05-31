@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tmx version="1.4">
+  <header creationtool="B&amp;R Automation Studio" creationtoolversion="4.2" datatype="unknown" segtype="sentence" adminlang="en" srclang="en" o-tmf="TMX">
+    <note>Change the namespace to define where this text module should be located within the logical structure of your texts</note>
+    <prop type="x-BR-TS:Namespace">IAT</prop>
+  </header>
+  <body>
+    <tu tuid="Al.1">
+      <tuv xml:lang="de">
+        <seg>Alarm Eins</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>alarm one</seg>
+      </tuv>
+      <tuv xml:lang="fr">
+        <seg>Bonjour tout le monde!</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.2">
+      <tuv xml:lang="de">
+        <seg>Alarm zwei</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>alarm two</seg>
+      </tuv>
+      <tuv xml:lang="fr">
+        <seg>Bonjour tout le monde!</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtDate">
+      <tuv xml:lang="de">
+        <seg>Datum / Uhrzeit</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Date &amp; Time</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtCode">
+      <tuv xml:lang="de">
+        <seg>Nr.</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>No.</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtError">
+      <tuv xml:lang="de">
+        <seg>Fehlermeldung</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Error</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtScope">
+      <tuv xml:lang="de">
+        <seg>Bereich</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Scope</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtState">
+      <tuv xml:lang="de">
+        <seg>Status</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>State</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtAlList">
+      <tuv xml:lang="de">
+        <seg>Alarm Liste</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Alarm List</seg>
+      </tuv>
+    </tu>
+    <tu tuid="Al.HeadTxtAlHistory">
+      <tuv xml:lang="de">
+        <seg>Alarm Historie</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Alarm History</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>
