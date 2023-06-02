@@ -4,7 +4,9 @@
   <Objects>
     <Object Type="Package">Navigation</Object>
     <Object Type="Package">BacksAndLogos</Object>
+    <Object Type="Package">AlarmCategories</Object>
     <Object Type="File">notifications.svg</Object>
     <Object Type="File">notifications-d.svg</Object>
+    <Object Type="File">reset.png</Object>
   </Objects>
 </Package>

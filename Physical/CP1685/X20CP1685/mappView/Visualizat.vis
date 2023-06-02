@@ -34,6 +34,8 @@
   <ExpressionsSets />
   <Configurations>
     <Configuration key="activityCount" value="false" />
+		<Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_Screen_RGB_SVG.svg"/>	
+		<Configuration key="bootColor" value="#FFFFFF" />
     <Configuration key="zoom" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />
