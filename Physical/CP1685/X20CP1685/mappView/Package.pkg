@@ -6,6 +6,7 @@
     <Object Type="File">Visualizat.vis</Object>
     <Object Type="File">BiDashboard.binding</Object>
     <Object Type="File">BiAlarms.binding</Object>
+    <Object Type="File">BiClientInfo.binding</Object>
     <Object Type="File">EvBiAlarms.eventbinding</Object>
   </Objects>
 </Package>

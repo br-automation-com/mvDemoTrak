@@ -64,22 +64,23 @@ PROGRAM _CYCLIC
 	fbMpAlarmXHistory.MpLink := ADR(gAlarmXHistory);
 	fbMpAlarmXHistory();
 	
-//	(* check faling trigger from ErrorReset *) 
-//	IF EDGENEG(gMachine.Cmd.ErrorReset) THEN
-//		TON_ErrorReset.IN:=  TRUE;
-//	END_IF	
-//	(* delay time to acknowledge all errors *)
-//	TON_ErrorReset(PT := T#500ms);
+	(* check faling trigger from ErrorReset *) 
+	//IF EDGENEG(gMachine.Cmd.ErrorReset) THEN
+	IF EDGENEG (gMachineErrorReset) THEN
+		TON_ErrorReset.IN:=  TRUE;
+	END_IF	
+	(* delay time to acknowledge all errors *)
+	TON_ErrorReset(PT := T#500ms);
 	
-//	(*Only for demo*)
-//	IF gMachine.Cmd.ErrorReset THEN 
-//		tmpErrorID := 0;
-//	END_IF
+	(*Only for demo*)
+	IF gMachineErrorReset THEN 
+		tmpErrorID := 0;
+	END_IF
 
 	(*AcknowledgeAll*)	
 	fbMpAlarmXAckAll.Enable := fbMpAlarmXCore.Active;
 	fbMpAlarmXAckAll.MpLink := ADR(gAlarmXCore);
-//	fbMpAlarmXAckAll.Execute := TON_ErrorReset.Q;
+	fbMpAlarmXAckAll.Execute := TON_ErrorReset.Q;
 	fbMpAlarmXAckAll();
 	IF fbMpAlarmXAckAll.CommandDone THEN
 		TON_ErrorReset.IN :=FALSE;

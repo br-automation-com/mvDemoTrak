@@ -24,6 +24,92 @@
         </Group>
       </Group>
     </Group>
+    <Group ID="mapp.AlarmX.Core.Configuration">
+      <Group ID="[0]">
+        <Property ID="Name" Value="AL_AlarmMeldung" />
+        <Property ID="Message" Value="AlarmMeldung" />
+        <Property ID="Code" Value="100" />
+        <Property ID="Severity" Value="100" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="100" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Name" Value="AL_AlarmMeldung1" />
+        <Property ID="Message" Value="AlarmMeldung" />
+        <Property ID="Code" Value="101" />
+        <Property ID="Severity" Value="100" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="101" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[2]">
+        <Property ID="Name" Value="AL_AlarmMedMeldung" />
+        <Property ID="Message" Value="AlarmMedMeldung" />
+        <Property ID="Code" Value="50" />
+        <Property ID="Severity" Value="50" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="50" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[3]">
+        <Property ID="Name" Value="AL_AlarmMedMeldung1" />
+        <Property ID="Message" Value="AlarmMedMeldung1" />
+        <Property ID="Code" Value="51" />
+        <Property ID="Severity" Value="50" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="51" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[4]">
+        <Property ID="Name" Value="AL_Warnung" />
+        <Property ID="Message" Value="Warnung" />
+        <Property ID="Code" Value="10" />
+        <Property ID="Severity" Value="10" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="10" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[5]">
+        <Property ID="Name" Value="AL_Warnung1" />
+        <Property ID="Message" Value="Warnung1" />
+        <Property ID="Code" Value="11" />
+        <Property ID="Severity" Value="10" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AlarmXTask:tmpErrorID" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="11" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+    </Group>
     <Group ID="mapp.AlarmX.Core.Categories">
       <Group ID="[0]">
         <Property ID="Name" Value="CatWarning" />

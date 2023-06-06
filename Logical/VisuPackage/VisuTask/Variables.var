@@ -6,4 +6,5 @@ VAR
 	TP_PulseOffMed : TP;
 	TP_PulseOnFlash : TP;
 	TP_PulseOffFlash : TP;
+	TON_MachineErrorReset : TON;
 END_VAR

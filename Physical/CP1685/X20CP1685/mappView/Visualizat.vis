@@ -13,6 +13,7 @@
   <BindingsSets>
     <BindingsSet refId="BiDashboard" />
     <BindingsSet refId="BiAlarms" />
+		<BindingsSet refId="BiClientInfo" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="EvBiAlarms" />

@@ -2,5 +2,12 @@
 <Content id="ContHeader" height="125" width="1980" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
     <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutputHeader" top="45" left="1675" width="300" height="34" zIndex="0" format="dd MMM yyyy, HH:mm" borderWidth="0px 0px 0px 2px" backColor="rgba(255, 255, 255, 0)" borderColor="rgba(220, 220, 220, 1)" textColor="rgba(220, 220, 220, 1)" fontName="NotoSansMed" fontSize="30px" bold="false" />
+    <Widget xsi:type="widgets.brease.AlarmLine" id="AlarmLine1" top="5" left="185" width="1465" height="115" zIndex="1" format="dd MMM yyyy, HH:mm:ss" imagePrefix="Media/Icons/AlarmCategories/" imageSuffix=".svg" imageHeight="50" imageWidth="50" borderWidth="4px" borderColor="rgba(254, 59, 59, 1)" cellBorderColor="rgba(160, 160, 160, 1)" backColor="rgba(241, 242, 242, 1)" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontSize="28px" fontName="NotoSansMed" visible="false">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.AlarmLineItem" id="AlarmLineItem1" width="80" zIndex="0" columnType="category" />
+        <Widget xsi:type="widgets.brease.AlarmLineItem" id="AlarmLineItem2" width="1255" zIndex="1" />
+        <Widget xsi:type="widgets.brease.AlarmLineItem" id="AlarmLineItem3" width="100" zIndex="2" columnType="code" />
+      </Widgets>
+    </Widget>
   </Widgets>
 </Content>
