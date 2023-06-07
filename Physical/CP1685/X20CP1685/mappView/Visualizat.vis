@@ -4,7 +4,7 @@
   <Pages>
     <Page refId="PgMain" />
     <Page refId="PgDiag1" />
-    <Page refId="PgDiag2" />
+    <Page refId="PgFiles" />
     <Page refId="PgSDM" />
     <Page refId="PgSettings" />
     <Page refId="PgAlarms" />
@@ -13,10 +13,12 @@
   <BindingsSets>
     <BindingsSet refId="BiDashboard" />
     <BindingsSet refId="BiAlarms" />
-		<BindingsSet refId="BiClientInfo" />
+    <BindingsSet refId="BiClientInfo" />
+    <BindingsSet refId="BiContDiag1" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="EvBiAlarms" />
+    <EventBindingsSet refId="EvBiDiag1" />
   </EventBindingsSets>
   <Dialogs />
   <Contents>
@@ -24,7 +26,7 @@
     <Content refId="ContHeader" />
     <Content refId="ContNavigation" />
     <Content refId="ContDiag1" />
-    <Content refId="ContDiag2" />
+    <Content refId="ContFiles" />
     <Content refId="ContSDM" />
     <Content refId="ContSettings" />
     <Content refId="ContAlList" />
@@ -35,8 +37,8 @@
   <ExpressionsSets />
   <Configurations>
     <Configuration key="activityCount" value="false" />
-		<Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_Screen_RGB_SVG.svg"/>	
-		<Configuration key="bootColor" value="#FFFFFF" />
+    <Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_Screen_RGB_SVG.svg" />
+    <Configuration key="bootColor" value="#FFFFFF" />
     <Configuration key="zoom" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />

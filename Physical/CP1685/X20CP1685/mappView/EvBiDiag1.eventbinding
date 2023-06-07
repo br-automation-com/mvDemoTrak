@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EventBindingSet id="EvBiDiag1" xmlns="http://www.br-automation.com/iat2014/eventbinding/v2" xmlns:types="http://www.br-automation.com/iat2015/widgetTypes/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Bindings>
+    <EventBinding id="ContDiag1.MPBntStop.MouseDown">
+      <Source xsi:type="widgets.brease.MomentaryPushButton.Event" contentRefId="ContDiag1" widgetRefId="MPBntStop" event="MouseDown" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="widgets.brease.ToggleButton.Action" contentRefId="ContDiag1" widgetRefId="TBntPlay">
+            <Method xsi:type="widgets.brease.ToggleButton.Action.SetValue" value="0" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_1">
+      <Source xsi:type="widgets.brease.ToggleButton.Event" contentRefId="ContDiag1" widgetRefId="TBntShowBreakdownList" event="MouseUp" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="widgets.brease.ButtonBar.Action" contentRefId="ContDiag1" widgetRefId="ButtonBar1">
+            <Method xsi:type="widgets.brease.ButtonBar.Action.SetSelectedIndex" index="0" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+  </Bindings>
+</EventBindingSet>

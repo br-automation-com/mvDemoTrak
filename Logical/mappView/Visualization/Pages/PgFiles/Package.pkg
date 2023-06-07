@@ -2,7 +2,7 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package SubType="PagePackage" PackageType="PagePackage" xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="File" Description="Page description">PgDiag2.page</Object>
-    <Object Type="File">ContDiag2.content</Object>
+    <Object Type="File" Description="Page description">PgFiles.page</Object>
+    <Object Type="File">ContFiles.content</Object>
   </Objects>
 </Package>

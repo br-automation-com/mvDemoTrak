@@ -7,6 +7,8 @@
     <Object Type="File">BiDashboard.binding</Object>
     <Object Type="File">BiAlarms.binding</Object>
     <Object Type="File">BiClientInfo.binding</Object>
+    <Object Type="File">BiContDiag1.binding</Object>
     <Object Type="File">EvBiAlarms.eventbinding</Object>
+    <Object Type="File">EvBiDiag1.eventbinding</Object>
   </Objects>
 </Package>

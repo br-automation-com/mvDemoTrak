@@ -4,10 +4,10 @@
   <Element ID="en" Type="Language">
     <Property ID="LanguageName" Value="English" />
     <Property ID="NativeName" Value="English" />
+    <Property ID="IsDesignLanguage" Value="TRUE" />
   </Element>
   <Element ID="de" Type="Language">
     <Property ID="LanguageName" Value="German" />
     <Property ID="NativeName" Value="Deutsch" />
-    <Property ID="IsDesignLanguage" Value="TRUE" />
   </Element>
 </Configuration>

@@ -10,6 +10,9 @@ TYPE
 	END_STRUCT;
 	Cmd_Visu_type : 	STRUCT  (*Commands from HMI to PLC*)
 		ErrorReset : BOOL; (*Error Reset*)
+		DiagnosisStopButton : BOOL; (*Diagnosis Stop Button*)
+		DiagnosisPlayButton : BOOL; (*Diagnosis Play Button*)
+		DiagnosisBreakDownIdx : USINT; (*Diagnosis Breakdown - ButtonBar selected Index*)
 	END_STRUCT;
 	Para_Visu_type : 	STRUCT  (*Parameters from HMI toPLC*)
 		ClientInfo : ARRAY[0..1]OF ClientInfo_typ; (*Client Info*)

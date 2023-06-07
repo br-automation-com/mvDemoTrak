@@ -9,5 +9,7 @@
     <Object Type="File">Settings.svg</Object>
     <Object Type="File">Browser.svg</Object>
     <Object Type="File">Alarm.svg</Object>
+    <Object Type="File">Diagnostics.svg</Object>
+    <Object Type="File">Files.svg</Object>
   </Objects>
 </Package>

@@ -3,10 +3,10 @@
 <Configuration>
   <Element ID="TextConfig" Type="TextConfig">
     <Group ID="Languages">
-      <Property ID="UserDefaultLanguage" Value="de" />
-      <Property ID="UserFallbackLanguage" Value="de" />
+      <Property ID="UserDefaultLanguage" Value="en" />
+      <Property ID="UserFallbackLanguage" Value="en" />
       <Group ID="TargetLanguages">
-        <Property ID="TargetLanguage[1]" Value="de" />
+        <Property ID="TargetLanguage[1]" Value="en" />
       </Group>
     </Group>
     <Group ID="TargetFiles">
