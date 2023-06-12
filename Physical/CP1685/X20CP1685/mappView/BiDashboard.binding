@@ -18,5 +18,7 @@
 <Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisBreakDownIdx" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="ButtonBar1" attribute="selectedIndex" />
 </Binding>
+
+
 </Bindings>
 </BindingsSet>

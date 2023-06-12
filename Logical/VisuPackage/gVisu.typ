@@ -9,6 +9,7 @@ TYPE
 		Data : {REDUND_UNREPLICABLE} Data_Visu_type; (*Data from PLC to HMI*)
 	END_STRUCT;
 	Cmd_Visu_type : 	STRUCT  (*Commands from HMI to PLC*)
+		SetTime : BOOL; (*Set new time*)
 		ErrorReset : BOOL; (*Error Reset*)
 		DiagnosisStopButton : BOOL; (*Diagnosis Stop Button*)
 		DiagnosisPlayButton : BOOL; (*Diagnosis Play Button*)
@@ -21,6 +22,7 @@ TYPE
 	END_STRUCT;
 	Data_Visu_type : 	STRUCT  (*Data from PLC to HMI*)
 		ActTime : DATE_AND_TIME; (*actual server time*)
+		SetTime : DATE_AND_TIME;
 		VisAlarms : VisAlarms_type;
 		ClockPuls : ClockPuls_type; (*ClockPulse*)
 		AlListFilterConfiguration : STRING[100]; (*Al List Filter Configuration*)

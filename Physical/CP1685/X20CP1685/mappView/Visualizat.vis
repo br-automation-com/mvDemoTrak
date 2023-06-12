@@ -15,10 +15,12 @@
     <BindingsSet refId="BiAlarms" />
     <BindingsSet refId="BiClientInfo" />
     <BindingsSet refId="BiContDiag1" />
+		<BindingsSet refId="BiSettings" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="EvBiAlarms" />
     <EventBindingsSet refId="EvBiDiag1" />
+    <EventBindingsSet refId="EvBiSettings" />
   </EventBindingsSets>
   <Dialogs />
   <Contents>

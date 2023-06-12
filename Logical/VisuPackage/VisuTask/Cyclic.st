@@ -24,6 +24,13 @@ PROGRAM _CYCLIC
 	fbDTGetTime(enable := TRUE);
 	gVisu.Data.ActTime := fbDTGetTime.DT1;
 	(***************************************************************)
+	(* Set new time *)
+	IF gVisu.Cmd.SetTime THEN
+		gVisu.Cmd.SetTime := FALSE;
+		fbDTSetTime(enable := TRUE , DT1 := gVisu.Data.SetTime );
+	END_IF
+	(***************************************************************)
+	
 	(*ClockPulse*)
 	ClockPulse;
 	gVisu.Data.ClockPuls.Slow := TP_PulseOnSlow.Q;
