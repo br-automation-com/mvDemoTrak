@@ -7,10 +7,12 @@
       <Property ID="UserFallbackLanguage" Value="en" />
       <Group ID="TargetLanguages">
         <Property ID="TargetLanguage[1]" Value="en" />
+        <Property ID="TargetLanguage[2]" Value="de" />
       </Group>
     </Group>
     <Group ID="TargetFiles">
       <Property ID="TargetFile[1]" Value="mappView.Resources.Texts.AlarmTexts.tmx" />
+      <Property ID="TargetFile[2]" Value="mappView.Resources.Texts.LocalTexts.tmx" />
     </Group>
   </Element>
 </Configuration>

@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContSettings" height="1415" width="1980" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.DateTimeInput" id="DateTimeInput1" top="155" left="45" width="475" height="60" zIndex="0" format="dd MMM yyyy, HH:mm" value="2023-06-01T00:00:00.000Z" cornerRadius="5px" borderColor="rgba(71, 71, 71, 1)" activeBackColor="rgba(219, 219, 219, 1)" fontName="NotoSansMed" fontSize="40px" />
-    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeDateAndTime" top="75" left="45" width="475" height="55" zIndex="1" value="change Date and Time" textColor="rgba(0, 0, 0, 1)" textAlign="center" fontName="NotoSansMed" fontSize="40px" padding="0px 0px 0px 0px" />
+    <Widget xsi:type="widgets.brease.DateTimeInput" id="DateTimeInput1" top="110" left="45" width="475" height="60" zIndex="0" format="dd MMM yyyy, HH:mm" value="2023-06-01T00:00:00.000Z" cornerRadius="5px" borderColor="rgba(71, 71, 71, 1)" activeBackColor="rgba(219, 219, 219, 1)" fontName="NotoSansMed" fontSize="40px" />
+    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeDateAndTime" top="40" left="45" width="620" height="55" zIndex="1" value="$IAT/Settings.ChgDateAndTime" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="40px" padding="0px 0px 0px 0px" />
+    <Widget xsi:type="widgets.brease.LanguageSelector" id="LanguageSelector1" top="310" left="45" width="360" height="65" zIndex="2" displaySettings="imageAndText" itemHeight="65" listPosition="bottom" listWidth="360" cornerRadius="5px" backColor="rgba(224, 224, 224, 1)" mouseDownBackColor="rgba(224, 224, 224, 1)" borderColor="rgba(71, 71, 71, 1)" fontSize="38px" fontName="NotoSansMed" bold="false" />
+    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeLanguage" top="230" left="45" width="620" height="55" zIndex="3" value="$IAT/Settings.ChgLanguage" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="40px" padding="0px 0px 0px 0px" />
   </Widgets>
 </Content>
