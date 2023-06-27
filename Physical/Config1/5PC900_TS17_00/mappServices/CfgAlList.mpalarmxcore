@@ -23,6 +23,9 @@
           </Selector>
         </Group>
       </Group>
+      <Group ID="Default">
+        <Selector ID="[0]" Value="Remain" />
+      </Group>
     </Group>
     <Group ID="mapp.AlarmX.Core.Configuration">
       <Group ID="[0]">

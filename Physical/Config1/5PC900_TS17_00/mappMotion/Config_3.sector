@@ -98,6 +98,6 @@
         <Property ID="SegmentRef" Value="::gSegB18" />
       </Group>
     </Selector>
-    <Selector ID="Alarms" Value="None" />
+    <Selector ID="Alarms" Value="MpAlarmX" />
   </Element>
 </Configuration>
