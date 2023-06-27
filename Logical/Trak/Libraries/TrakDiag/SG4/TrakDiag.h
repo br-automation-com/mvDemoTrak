@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* TrakDiag 2.10.0 */
+/* TrakDiag 2.01.0 */
 
 #ifndef _TRAKDIAG_
 #define _TRAKDIAG_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _TrakDiag_VERSION
-#define _TrakDiag_VERSION 2.10.0
+#define _TrakDiag_VERSION 2.01.0
 #endif
 
 #include <bur/plctypes.h>
