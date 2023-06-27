@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vdef:Visualization id="mvDemoTrak" autoUpdate="true" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
+  <StartPage pageRefId="PgMain" />
+  <Pages>
+    <Page refId="PgMain" />
+    <Page refId="PgDiag1" />
+    <Page refId="PgFiles" />
+    <Page refId="PgSDM" />
+    <Page refId="PgSettings" />
+    <Page refId="PgAlarms" />
+  </Pages>
+  <Navigations />
+  <BindingsSets>
+    <BindingsSet refId="BiDashboard" />
+    <BindingsSet refId="BiAlarms" />
+    <BindingsSet refId="BiClientInfo" />
+    <BindingsSet refId="BiContDiag1" />
+		<BindingsSet refId="BiSettings" />
+  </BindingsSets>
+  <EventBindingsSets>
+    <EventBindingsSet refId="EvBiAlarms" />
+    <EventBindingsSet refId="EvBiDiag1" />
+    <EventBindingsSet refId="EvBiSettings" />
+  </EventBindingsSets>
+  <Dialogs />
+  <Contents>
+    <Content refId="ContDash" />
+    <Content refId="ContHeader" />
+    <Content refId="ContNavigation" />
+    <Content refId="ContDiag1" />
+    <Content refId="ContFiles" />
+    <Content refId="ContSDM" />
+    <Content refId="ContSettings" />
+    <Content refId="ContAlList" />
+    <Content refId="ContAlHist" />
+  </Contents>
+  <SnippetsSets />
+  <VariablesSets />
+  <ExpressionsSets />
+  <Configurations>
+    <Configuration key="activityCount" value="false" />
+    <Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_Screen_RGB_SVG.svg" />
+    <Configuration key="bootColor" value="#FFFFFF" />
+    <Configuration key="zoom" value="true" />
+    <Gestures>
+      <!--<SystemGesture1 touchPoints="2" />
+		  <SystemGesture2 touchPoints="2" />
+		  <SystemGesture3 touchPoints="2" />-->
+    </Gestures>
+    <VirtualKeyboards>
+      <!--<InputProcessing onKeyDown="true" />-->
+    </VirtualKeyboards>
+  </Configurations>
+</vdef:Visualization>
