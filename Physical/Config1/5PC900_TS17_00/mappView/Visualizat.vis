@@ -24,10 +24,10 @@
   </EventBindingsSets>
   <Dialogs />
   <Contents>
-    <Content refId="ContDash" />
-    <Content refId="ContHeader" />
-    <Content refId="ContNavigation" />
-    <Content refId="ContDiag1" />
+    <Content refId="ContDash"  preCache="true" />
+    <Content refId="ContHeader"  preCache="true"/>
+    <Content refId="ContNavigation" preCache="true"/>
+    <Content refId="ContDiag1" preCache="true"/>
     <Content refId="ContFiles" />
     <Content refId="ContSDM" />
     <Content refId="ContSettings" />
@@ -39,9 +39,10 @@
   <ExpressionsSets />
   <Configurations>
     <Configuration key="activityCount" value="false" />
-    <Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_Screen_RGB_SVG.svg" />
+    <Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_RGB_SVG.svg" />
     <Configuration key="bootColor" value="#FFFFFF" />
     <Configuration key="zoom" value="true" />
+		<Configuration key="bootProgressBar" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />
 		  <SystemGesture2 touchPoints="2" />

@@ -2,13 +2,13 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="File">B&amp;R backgrounds 01.png</Object>
-    <Object Type="File">B&amp;R backgrounds 02.png</Object>
-    <Object Type="File">B&amp;R background official 02 tagline.png</Object>
-    <Object Type="File">B&amp;R background pattern 2.png</Object>
-    <Object Type="File">B&amp;R_Logo_Screen_RGB_White_with_orange_bar_33px.png</Object>
-    <Object Type="File">B&amp;R_Logo_Screen_RGB_White_with_orange_bar_HD.png</Object>
-    <Object Type="File">B&amp;R_Logo_Screen_RGB_White_with_orange_bar_33px_B&amp;R_Logo_Screen_RGB_White_with_orange_bar_33px.svg</Object>
-    <Object Type="File">BnR_Logo_Screen_RGB_SVG.svg</Object>
+    <Object Type="File">BnR_backgr01.png</Object>
+    <Object Type="File">BnR_backgr02.png</Object>
+    <Object Type="File">BnR_backgr02_tagline.png</Object>
+    <Object Type="File">BnR_backgr_pattern2.png</Object>
+    <Object Type="File">BnR_Logo_RGB_33px.png</Object>
+    <Object Type="File">BnR_Logo_RGB_HD.png</Object>
+    <Object Type="File">BnR_Logo_RGB_33px.svg</Object>
+    <Object Type="File">BnR_Logo_RGB_SVG.svg</Object>
   </Objects>
 </Package>
