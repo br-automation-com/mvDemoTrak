@@ -186,6 +186,8 @@
       <Property ID="MonitoringPv" />
       <Property ID="ProcessingTaskClass" Value="4" />
     </Group>
-    <Selector ID="Alarms" Value="MpAlarmX" />
+    <Selector ID="Alarms" Value="MpAlarmX">
+      <Property ID="ComponentName" Value="" />
+    </Selector>
   </Element>
 </Configuration>
