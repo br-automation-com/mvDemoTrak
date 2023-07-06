@@ -5,5 +5,25 @@
     <Group ID="Processing">
       <Property ID="ProcessingTaskClass" Value="1" />
     </Group>
+    <Group ID="SharedAlarms">
+      <Selector ID="Assembly" Value="MpAlarmX" />
+      <Selector ID="Segment" Value="MpAlarmX">
+        <Group ID="mapp.AlarmX.Core.Configuration">
+          <Group ID="[3]">
+            <Property ID="Code" Value="1100" />
+            <Property ID="Severity" Value="100" />
+          </Group>
+        </Group>
+      </Selector>
+      <Selector ID="Sector" Value="MpAlarmX" />
+      <Selector ID="Shuttle" Value="MpAlarmX">
+        <Group ID="mapp.AlarmX.Core.Configuration">
+          <Group ID="[3]">
+            <Property ID="Code" Value="2100" />
+            <Property ID="Severity" Value="100" />
+          </Group>
+        </Group>
+      </Selector>
+    </Group>
   </Element>
 </Configuration>

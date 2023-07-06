@@ -6,8 +6,8 @@
         <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem1" width="320" zIndex="0" columnType="timestamp" text="$IAT/Al.HeadTxtDate" />
         <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem2" width="170" zIndex="1" columnType="code" text="$IAT/Al.HeadTxtCode" />
         <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem3" width="90" zIndex="2" columnType="category" text="Cat" />
-        <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem4" width="1030" zIndex="3" text="$IAT/Al.HeadTxtError" />
-        <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem6" width="225" zIndex="4" columnType="scope" text="$IAT/Al.HeadTxtScope" />
+        <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem4" width="925" zIndex="3" text="$IAT/Al.HeadTxtError" />
+        <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem6" width="325" zIndex="4" columnType="scope" text="$IAT/Al.HeadTxtScope" />
         <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem5" width="150" zIndex="5" columnType="state" text="$IAT/Al.HeadTxtState" />
       </Widgets>
     </Widget>

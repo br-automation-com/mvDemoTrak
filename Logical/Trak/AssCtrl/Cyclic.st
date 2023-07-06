@@ -1,5 +1,7 @@
 
 PROGRAM _CYCLIC
+//test Mapping Visu Buttons
+ assemblyCtrl.Cmd.Start := gVisu.Cmd.DiagnosisPlayButton;
 
 	fbLogStep.EventID := TRAK_BASIC_INFO_ID;
 

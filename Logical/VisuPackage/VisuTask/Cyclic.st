@@ -36,5 +36,5 @@ PROGRAM _CYCLIC
 	gVisu.Data.ClockPuls.Slow := TP_PulseOnSlow.Q;
 	gVisu.Data.ClockPuls.Medium := TP_PulseOnMed.Q;
 	gVisu.Data.ClockPuls.Flash := TP_PulseOnFlash.Q;
-	
+
 END_PROGRAM

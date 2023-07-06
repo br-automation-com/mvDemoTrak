@@ -8,7 +8,7 @@
 
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPlayButton" attribute="value" />
-<Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="TBntPlay" attribute="value" />
+<Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="MPBntPlay" attribute="value" />
 </Binding>
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisStopButton" attribute="value" />
