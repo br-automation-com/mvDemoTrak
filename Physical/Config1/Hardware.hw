@@ -11,24 +11,38 @@
   <Module Name="5LS182.6-2" Type="5LS182.6-2" Version="1.9.0.0">
     <Connection Connector="SL" TargetModule="5AC901.BX05-00" TargetConnector="SL1" />
     <Connector Name="IF1">
+      <Parameter ID="EplHostName" Value="mvdemotrak" />
       <Parameter ID="NodeDefinition" Value="Software" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
     </Connector>
   </Module>
   <Module Name="5LS182.6-2a" Type="5LS182.6-2" Version="1.9.0.0" Disabled="true">
     <Connection Connector="SL" TargetModule="5AC901.BX05-00" TargetConnector="SL2" />
-    <Connector Name="IF1" Disabled="true" />
+    <Connector Name="IF1" Disabled="true">
+      <Parameter ID="EplHostName" Value="mvdemotrak" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
+    </Connector>
   </Module>
   <Module Name="5LS182.6-2b" Type="5LS182.6-2" Version="1.9.0.0" Disabled="true">
     <Connection Connector="SL" TargetModule="5AC901.BX05-00" TargetConnector="SL3" />
-    <Connector Name="IF1" Disabled="true" />
+    <Connector Name="IF1" Disabled="true">
+      <Parameter ID="EplHostName" Value="mvdemotrak" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
+    </Connector>
   </Module>
   <Module Name="5LS182.6-2c" Type="5LS182.6-2" Version="1.9.0.0" Disabled="true">
     <Connection Connector="SL" TargetModule="5AC901.BX05-00" TargetConnector="SL4" />
-    <Connector Name="IF1" Disabled="true" />
+    <Connector Name="IF1" Disabled="true">
+      <Parameter ID="EplHostName" Value="mvdemotrak" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
+    </Connector>
   </Module>
   <Module Name="5LS182.6-2d" Type="5LS182.6-2" Version="1.9.0.0" Disabled="true">
     <Connection Connector="SL" TargetModule="5AC901.BX05-00" TargetConnector="SL5" />
-    <Connector Name="IF1" Disabled="true" />
+    <Connector Name="IF1" Disabled="true">
+      <Parameter ID="EplHostName" Value="mvdemotrak" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
+    </Connector>
   </Module>
   <Module Name="5PC900_TS17_00" Type="5PC900.TS17-00" Version="2.1.0.0">
     <Connection Connector="SY" TargetModule="5PC910.SX05-00" TargetConnector="SY1" />
@@ -45,6 +59,8 @@
     <Group ID="FileDevice2" />
     <Parameter ID="FileDeviceName2" Value="Diagnosis" />
     <Parameter ID="FileDevicePath2" Value="F:\web\Diagnosis" />
+    <Parameter ID="EthernetHostName" Value="mvdemotrak" />
+    <Parameter ID="EthernetDefaultGateway" Value="10.49.40.1" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="bur" />
     <Parameter ID="FtpUserPassword1" Value="efcpoAfz3gk2rn0a9Nq2v7CfehAGIZc7rIbAOhV34KU=" />
@@ -61,6 +77,7 @@
     <Connector Name="IF3">
       <Parameter ID="AssignedOperatingSystem" Value="ARemb" />
       <Parameter ID="ActivateDevice" Value="1" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
       <Parameter ID="Mode" Value="Manual" />
       <Parameter ID="InternetAddress" Value="10.49.40.236" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
@@ -69,6 +86,7 @@
     <Connector Name="IF4">
       <Parameter ID="AssignedOperatingSystem" Value="ARemb" />
       <Parameter ID="ActivateDevice" Value="1" />
+      <Parameter ID="HostName" Value="mvdemotrak" />
     </Connector>
     <Connector Name="IF5">
       <Parameter ID="AssignedOperatingSystem" Value="ARemb" />
