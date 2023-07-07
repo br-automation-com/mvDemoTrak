@@ -8,10 +8,11 @@ TYPE
 		ASM_POWER_IS_OFF,
 		ASM_W_POWER_ON,
 		ASM_ADD_SIM_SHUTTLES,
-		ASM_POWER_IS_ON,
+		ASM_POWER_IS_ON := 100,
 		ASM_START_MOVEMENT,
 		ASM_W_POWER_OFF,
 		ASM_SIMULATE_ERROR,
+		ASM_WAIT_FOR_DEFECT_SHUTTLE,
 		ASM_ERR_GET_INFO := 9000,
 		ASM_ERR_POWERING_ON,
 		ASM_ERR_POWERING_OFF,
@@ -30,6 +31,7 @@ TYPE
 	AssemblyStatusType : 	STRUCT 
 		Step : AssemblyStepEnum;
 		ResetStep : AssemblyResetStepEnum;
+		AllShuttlesMoving : BOOL;
 		Disabled : BOOL;
 		Ready : BOOL;
 		Homing : BOOL;

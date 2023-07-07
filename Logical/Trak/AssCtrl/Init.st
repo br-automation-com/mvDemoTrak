@@ -33,6 +33,10 @@ PROGRAM _INIT
 	fbAddSimShuttle.AdvancedParameters.Deceleration := 6.0;
 	fbAddSimShuttle.AdvancedParameters.Virtual := FALSE;
 
+
+	fbCatchShuttle.ProcessPoint := PP_ErrorPosition1;
+	fbCatchShuttle.Enable := TRUE;
+
 	fbAsmReset.Assembly := ADR(gAssembly_1);
 
 	fbRecorder.AssemblyName := 'gAssembly_1';

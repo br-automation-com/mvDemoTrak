@@ -8,5 +8,7 @@
     <File Description="Local data types" Private="true">Types.typ</File>
     <File Description="Local variables" Private="true">Variables.var</File>
     <File>ClockPulse.st</File>
+    <File>Mapping.st</File>
+    <File Private="true">Mapping.var</File>
   </Files>
 </Program>

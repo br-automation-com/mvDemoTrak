@@ -8,5 +8,6 @@
     <Object Type="File">notifications.svg</Object>
     <Object Type="File">notifications-d.svg</Object>
     <Object Type="File">reset.png</Object>
+    <Object Type="File">alert-octagon.svg</Object>
   </Objects>
 </Package>

@@ -15,24 +15,24 @@
     <BindingsSet refId="BiAlarms" />
     <BindingsSet refId="BiClientInfo" />
     <BindingsSet refId="BiContDiag1" />
-		<BindingsSet refId="BiSettings" />
+    <BindingsSet refId="BiSettings" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="EvBiAlarms" />
-    <EventBindingsSet refId="EvBiDiag1" />
     <EventBindingsSet refId="EvBiSettings" />
+    <EventBindingsSet refId="EvBiDiag1" />
   </EventBindingsSets>
   <Dialogs />
   <Contents>
-    <Content refId="ContDash"  preCache="true" />
-    <Content refId="ContHeader"  preCache="true"/>
-    <Content refId="ContNavigation" preCache="true"/>
-    <Content refId="ContDiag1" preCache="true"/>
+    <Content refId="ContDash" preCache="true" />
+    <Content refId="ContHeader" preCache="true" />
+    <Content refId="ContNavigation" preCache="true" />
     <Content refId="ContFiles" />
     <Content refId="ContSDM" />
     <Content refId="ContSettings" />
     <Content refId="ContAlList" />
     <Content refId="ContAlHist" />
+    <Content refId="ContDiag1" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />
@@ -42,7 +42,7 @@
     <Configuration key="bootLogo" value="Media/Icons/BacksAndLogos/BnR_Logo_RGB_SVG.svg" />
     <Configuration key="bootColor" value="#FFFFFF" />
     <Configuration key="zoom" value="true" />
-		<Configuration key="bootProgressBar" value="true" />
+    <Configuration key="bootProgressBar" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />
 		  <SystemGesture2 touchPoints="2" />

@@ -3,11 +3,11 @@
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
     <Task Name="TrakInit" Source="Trak.TrakInit.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="VisuTask" Source="VisuPackage.VisuTask.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2">
     <Task Name="AssCtrl" Source="Trak.AssCtrl.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="AlarmXTask" Source="VisuPackage.AlarmXTask.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="VisuTask" Source="VisuPackage.VisuTask.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#3" />
   <TaskClass Name="Cyclic#4">
@@ -77,5 +77,6 @@
     <LibraryObject Name="arssl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asieccon" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="mpalarmx" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="aruser" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

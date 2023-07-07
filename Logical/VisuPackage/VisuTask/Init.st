@@ -1,6 +1,6 @@
 
 
 PROGRAM _INIT
-	(* Insert code here *)
+	MappingInit;
 	 
 END_PROGRAM

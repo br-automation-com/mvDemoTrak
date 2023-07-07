@@ -11,7 +11,7 @@ TYPE
 	Cmd_Visu_type : 	STRUCT  (*Commands from HMI to PLC*)
 		SetTime : BOOL; (*Set new time*)
 		ErrorReset : BOOL; (*Error Reset*)
-		DiagnosisStopButton : BOOL; (*Diagnosis Stop Button*)
+		DiagnosisPowerButton : BOOL;
 		DiagnosisPlayButton : BOOL; (*Diagnosis Play Button*)
 		DiagnosisBreakDownIdx : USINT; (*Diagnosis Breakdown - ButtonBar selected Index*)
 	END_STRUCT;

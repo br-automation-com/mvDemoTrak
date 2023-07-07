@@ -5,15 +5,6 @@
 <Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Data.ActTime" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContHeader" widgetRefId="DateTimeOutputHeader" attribute="value" />
 </Binding>
-
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPlayButton" attribute="value" />
-<Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="MPBntPlay" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisStopButton" attribute="value" />
-<Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="MPBntStop" attribute="value" />
-</Binding>
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisBreakDownIdx" attribute="value" />
 <Target xsi:type="brease" contentRefId="ContDiag1" widgetRefId="ButtonBar1" attribute="selectedIndex" />

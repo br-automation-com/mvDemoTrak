@@ -100,4 +100,16 @@
     </Selector>
     <Selector ID="Alarms" Value="MpAlarmX" />
   </Element>
+  <Element ID="gSecB7" Type="sector">
+    <Selector ID="Type" Value="Composed">
+      <Group ID="StartSegment">
+        <Property ID="SegmentRef" Value="::gSegB7" />
+      </Group>
+      <Group ID="EndSegment">
+        <Property ID="SegmentRef" Value="::gSegB7" />
+        <Property ID="PositionRelativeTo" Value="FromEnd" />
+      </Group>
+    </Selector>
+    <Selector ID="Alarms" Value="None" />
+  </Element>
 </Configuration>

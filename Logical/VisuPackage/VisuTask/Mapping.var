@@ -1,0 +1,6 @@
+VAR
+	assemblyCtrl : REFERENCE TO AssemblyType;
+	assemblyCtrlDataLength : UDINT;
+	pAssemblyCtrl : UDINT;
+	status : UINT;
+END_VAR

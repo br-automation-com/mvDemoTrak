@@ -1,17 +1,10 @@
 
 PROGRAM _CYCLIC
 	(* Insert code here *)
-	
+	MappingCyclic;
 	
 	(***************************************************************)
-	(*Mapping Error Reset*)
-	IF gVisu.Cmd.ErrorReset THEN
-		gVisu.Cmd.ErrorReset := FALSE; //reset command
-		//mapp command to main structure -> Error Reset
-		//gMachine.Cmd.ErrorReset := TRUE;
-		gMachineErrorReset := TRUE;
-	END_IF
-	
+
 	(* only for test without machine code*)
 	TON_MachineErrorReset.IN := gMachineErrorReset;
 	TON_MachineErrorReset(PT := T#100ms);

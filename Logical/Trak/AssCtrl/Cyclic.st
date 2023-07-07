@@ -1,8 +1,11 @@
 
 PROGRAM _CYCLIC
-//test Mapping Visu Buttons
- assemblyCtrl.Cmd.Start := gVisu.Cmd.DiagnosisPlayButton;
+	(* catch shuttle on gSegB7 for simulation of shuttle errors *)
+	fbCatchShuttle();
+	
 
+
+	(* assembly's state machine *)
 	fbLogStep.EventID := TRAK_BASIC_INFO_ID;
 
 	CASE step OF
@@ -109,19 +112,27 @@ PROGRAM _CYCLIC
 			step := ASM_START_MOVEMENT;
 		ELSIF assemblyCtrl.Cmd.SimSegmentError THEN
 			assemblyCtrl.Cmd.SimSegmentError := FALSE;
-			fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_SEGMENT, Execute := FALSE );
+			fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_SEGMENT, Execute := FALSE ); (* reset fb *)
 			fbSegCommandError( Execute := TRUE );
 			step := ASM_SIMULATE_ERROR;
 		ELSIF assemblyCtrl.Cmd.SimChannelError THEN
-			assemblyCtrl.Cmd.SimChannelError := FALSE;
-			fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_CHANNEL, Execute := FALSE );
-			fbSegCommandError( Execute := TRUE );
-			step := ASM_SIMULATE_ERROR;
-		ELSIF assemblyCtrl.Cmd.SimEncoderError THEN
-			assemblyCtrl.Cmd.SimEncoderError := FALSE;
-			fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_ENCODER, Execute := FALSE );
-			fbSegCommandError( Execute := TRUE );
-			step := ASM_SIMULATE_ERROR;
+			IF assemblyCtrl.Status.AllShuttlesMoving THEN
+				assemblyCtrl.Cmd.SimChannelError := FALSE;
+				fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_CHANNEL, Execute := FALSE ); (* reset fb *)
+				shuttleCounter := fbCatchShuttle.ShuttleCounter;
+				step := ASM_WAIT_FOR_DEFECT_SHUTTLE;
+			ELSE
+				assemblyCtrl.Cmd.SimChannelError := FALSE;
+			END_IF
+		ELSIF assemblyCtrl.Cmd.SimEncoderError  THEN
+			IF assemblyCtrl.Status.AllShuttlesMoving THEN
+				assemblyCtrl.Cmd.SimEncoderError := FALSE;
+				fbSegCommandError( Segment := ADR(gSegB7), Type := TD_SEGERRCMD_ENCODER, Execute := FALSE ); (* reset fb *)
+				shuttleCounter := fbCatchShuttle.ShuttleCounter;
+				step := ASM_WAIT_FOR_DEFECT_SHUTTLE;
+			ELSE
+				assemblyCtrl.Cmd.SimEncoderError := FALSE;
+			END_IF
 		END_IF
 
 		
@@ -156,6 +167,16 @@ PROGRAM _CYCLIC
 		END_IF
 
 
+		ASM_WAIT_FOR_DEFECT_SHUTTLE: (* wait for defect shuttle passing *)
+		fbLogStep.Signal := 'ASM_WAIT_FOR_DEFECT_SHUTTLE';
+		IF shuttleCounter <> fbCatchShuttle.ShuttleCounter THEN
+			fbSegCommandError( Execute := TRUE );
+			assemblyCtrl.Cmd.SimChannelError := FALSE;
+			assemblyCtrl.Cmd.SimEncoderError := FALSE;
+			step := ASM_SIMULATE_ERROR;
+		END_IF
+
+
 		ASM_W_POWER_OFF:
 		fbLogStep.Signal := 'ASM_W_POWER_OFF';
 		IF fbPowerOff.Done OR  NOT assemblyCtrl.Status.Info.PowerOn THEN
@@ -177,9 +198,9 @@ PROGRAM _CYCLIC
 	END_CASE
 
 	assemblyCtrl.Status.Step := step;
-	fbLogStep(); (* log steps *)
+	fbLogStep(); (* log state machine *)
 
-
+	(* read assembly status *)
 	fbReadStatus();
 	assemblyCtrl.Status.Disabled  	:= fbReadStatus.AssemblyDisabled;
 	assemblyCtrl.Status.ErrorStop 	:= fbReadStatus.AssemblyErrorStop;
@@ -187,14 +208,26 @@ PROGRAM _CYCLIC
 	assemblyCtrl.Status.Stopping 	:= fbReadStatus.AssemblyStopping;
 	assemblyCtrl.Status.Ready 	  	:= fbReadStatus.AssemblyReady;
 
+	(* read assembly info *)
 	fbReadInfo();
 	assemblyCtrl.Status.Info := fbReadInfo.AssemblyInfo;
+	assemblyCtrl.Status.AllShuttlesMoving := FALSE;
+	IF assemblyCtrl.Status.Info.ShuttlesCount = assemblyCtrl.Para.NumberOfSimulatedShuttles THEN
+		IF assemblyCtrl.Status.Info.ShuttlesInDisabledCount = 0 AND
+			assemblyCtrl.Status.Info.ShuttlesInErrorStopCount = 0 AND
+			assemblyCtrl.Status.Info.ShuttlesInStandstillCount = 0 AND
+			assemblyCtrl.Status.Info.ShuttlesInStoppingCount = 0 THEN
+			assemblyCtrl.Status.AllShuttlesMoving := TRUE;
+		END_IF
+	END_IF
 
-
+	(* run recorder for breakdown analysis *)
 	fbRecorder( Trigger := assemblyCtrl.Status.ErrorStop );
+
+	(* web page *)
 	fbWebServices();
 
-
+	(* reset error stop *)
 	fbLogResetStep.EventID := TRAK_BASIC_INFO_ID;
 	CASE assemblyCtrl.Status.ResetStep OF
 		ASMR_NO_ERROR:
@@ -234,6 +267,6 @@ PROGRAM _CYCLIC
 		
 	END_CASE
 	 
-	fbLogResetStep();
+	fbLogResetStep(); (* log state machine *)
 
 END_PROGRAM
