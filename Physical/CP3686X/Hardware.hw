@@ -532,19 +532,22 @@
     <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
     <Parameter ID="Supervision" Value="off" />
   </Module>
-  <Module Name="X20CP1685" Type="X20CP1685" Version="1.7.2.0">
+  <Module Name="X20CP3686X" Type="X20CP3686X" Version="1.6.2.0">
     <Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
       <Parameter ID="Mode" Value="Manual" />
-      <Parameter ID="InternetAddress" Value="192.168.0.105" Description="//10.49.40.211" />
+      <Parameter ID="InternetAddress" Value="192.168.0.105" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
       <Parameter ID="ActivateSnmp" Value="2" />
+    </Connector>
+    <Connector Name="IF3">
+      <Parameter ID="CycleTime" Value="2000" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="mvDemoTrak_CP1685" />
     <Parameter ID="MotionLoggerSize" Value="2048000" />
     <Parameter ID="EnableUsbRemoteInstall" Value="1" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
-    <Parameter ID="TimerDevice" Value="X20CP1685.IF3" />
+    <Parameter ID="TimerDevice" Value="X20CP3686X.IF3" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
     <Parameter ID="Cyclic1Duration" Value="2000" />
     <Parameter ID="Cyclic1Tolerance" Value="0" />
@@ -576,7 +579,7 @@
     <Connection Connector="SS" TargetModule="X20BB81a" TargetConnector="SS1" />
   </Module>
   <Module Name="X20HB8880" Type="X20HB8880" Version="1.1.0.0">
-    <Connection Connector="ETH1" TargetModule="X20CP1685" TargetConnector="IF3">
+    <Connection Connector="ETH1" TargetModule="X20CP3686X" TargetConnector="IF3">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
     <Connection Connector="ETH2" TargetModule="SegA1" TargetConnector="PLK3">
