@@ -135,7 +135,6 @@ PROGRAM _CYCLIC
 		brsstrcpy(ADR(gVisu.Data.AlHistFilterConfiguration), ADR('[{"value":"2","conditionType":"==","columnType":"cat"}]'));
 	END_IF
 	
-	
 END_PROGRAM
 
 PROGRAM _EXIT

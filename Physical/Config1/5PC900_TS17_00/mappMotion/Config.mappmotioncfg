@@ -6,7 +6,14 @@
       <Property ID="ProcessingTaskClass" Value="1" />
     </Group>
     <Group ID="SharedAlarms">
-      <Selector ID="Assembly" Value="MpAlarmX" />
+      <Selector ID="Assembly" Value="MpAlarmX">
+        <Group ID="mapp.AlarmX.Core.Configuration">
+          <Group ID="[3]">
+            <Property ID="Code" Value="100" />
+            <Property ID="Severity" Value="100" />
+          </Group>
+        </Group>
+      </Selector>
       <Selector ID="Segment" Value="MpAlarmX">
         <Group ID="mapp.AlarmX.Core.Configuration">
           <Group ID="[3]">

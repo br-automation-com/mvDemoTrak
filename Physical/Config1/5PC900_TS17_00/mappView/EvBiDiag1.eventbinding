@@ -11,25 +11,53 @@
         </Action>
       </EventHandler>
     </EventBinding>
-
     <EventBinding id="ContDiag1.MPBntPower.Click">
       <Source xsi:type="widgets.brease.Button.Event" contentRefId="ContDiag1" widgetRefId="MPBntPower" event="Click" />
       <EventHandler>
         <Action>
-			<Target xsi:type="opcUa.NodeAction" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPowerButton" > 
-        <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" /> 
-    		</Target>
+          <Target xsi:type="opcUa.NodeAction" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPowerButton">
+            <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" />
+          </Target>
         </Action>
       </EventHandler>
     </EventBinding>
-
     <EventBinding id="ContDiag1.MPBntPlay.Click">
       <Source xsi:type="widgets.brease.Button.Event" contentRefId="ContDiag1" widgetRefId="MPBntPlay" event="Click" />
       <EventHandler>
         <Action>
-			<Target xsi:type="opcUa.NodeAction" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPlayButton" > 
-        <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" /> 
-    		</Target>
+          <Target xsi:type="opcUa.NodeAction" refId="::AsGlobalPV:gVisu.Cmd.DiagnosisPlayButton">
+            <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EvBiMouseUp1">
+      <Source xsi:type="widgets.brease.ToggleButton.Event" contentRefId="ContDiag1" widgetRefId="TBntBreakdown1" event="MouseUp" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="widgets.brease.ToggleButton.Action" contentRefId="ContDiag1" widgetRefId="TBntShowBreakdownList">
+            <Method xsi:type="widgets.brease.ToggleButton.Action.SetValueBool" value="false" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_2">
+      <Source xsi:type="widgets.brease.ToggleButton.Event" contentRefId="ContDiag1" widgetRefId="TBntBreakdown2" event="MouseUp" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="widgets.brease.ToggleButton.Action" contentRefId="ContDiag1" widgetRefId="TBntShowBreakdownList">
+            <Method xsi:type="widgets.brease.ToggleButton.Action.SetValueBool" value="false" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_3">
+      <Source xsi:type="widgets.brease.ToggleButton.Event" contentRefId="ContDiag1" widgetRefId="TBntBreakdown3" event="MouseUp" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="widgets.brease.ToggleButton.Action" contentRefId="ContDiag1" widgetRefId="TBntShowBreakdownList">
+            <Method xsi:type="widgets.brease.ToggleButton.Action.SetValueBool" value="false" />
+          </Target>
         </Action>
       </EventHandler>
     </EventBinding>
