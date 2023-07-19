@@ -112,6 +112,48 @@
           </Group>
         </Selector>
       </Group>
+      <Group ID="[6]">
+        <Property ID="Name" Value="AL_Error_TD_WebServices" />
+        <Property ID="Message" Value="Error TD_WebServices: {&amp;Snippet_ErrorID_TD_WebServices}" />
+        <Property ID="Code" Value="102" />
+        <Property ID="Severity" Value="100" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AssCtrl:fbWebServices.Error" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="1" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+      <Group ID="[7]">
+        <Property ID="Name" Value="AL_Error_TD_Recorder" />
+        <Property ID="Message" Value="Error TD_Recorder: {&amp;Snippet_ErrorID_TD_Recorder}" />
+        <Property ID="Code" Value="103" />
+        <Property ID="Severity" Value="100" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AssCtrl:fbRecorder.Error" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="1" />
+            </Group>
+          </Group>
+        </Selector>
+      </Group>
+    </Group>
+    <Group ID="mapp.AlarmX.Core.Snippets">
+      <Group ID="[0]">
+        <Property ID="Key" Value="Snippet_ErrorID_TD_WebServices" />
+        <Selector ID="Value">
+          <Property ID="PV" Value="::AssCtrl:fbWebServices.ErrorID" />
+        </Selector>
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Key" Value="Snippet_ErrorID_TD_Recorder" />
+        <Selector ID="Value">
+          <Property ID="PV" Value="::AssCtrl:fbRecorder.ErrorID" />
+        </Selector>
+      </Group>
     </Group>
     <Group ID="mapp.AlarmX.Core.Categories">
       <Group ID="[0]">

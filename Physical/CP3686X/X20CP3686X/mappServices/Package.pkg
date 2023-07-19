@@ -2,7 +2,7 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package SubType="mappServices" PackageType="mappServices" xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="File">CfgAlList.mpalarmxcore</Object>
-    <Object Type="File">CfgAlHist.mpalarmxhistory</Object>
+    <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappServices\CfgAlHist.mpalarmxhistory</Object>
+    <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappServices\CfgAlList.mpalarmxcore</Object>
   </Objects>
 </Package>
