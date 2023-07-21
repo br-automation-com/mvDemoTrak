@@ -9,8 +9,10 @@
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\BiClientInfo.binding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\BiContDiag1.binding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\BiSettings.binding</Object>
+    <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\BiFileExplorer.binding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiAlarms.eventbinding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiDiag1.eventbinding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiSettings.eventbinding</Object>
+    <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiFileExplorer.eventbinding</Object>
   </Objects>
 </Package>

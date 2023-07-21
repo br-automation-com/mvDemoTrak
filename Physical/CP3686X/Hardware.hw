@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.12.3.127 FileVersion="4.9"?>
+<?AutomationStudio Version=4.12.4.107 FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
   <Module Name="PowerSupply01" Type="80PS080X3.10-01" Version="1.5.0.0">
     <Connection Connector="X2X1" TargetModule="X20BT9400" TargetConnector="X2X1">
@@ -559,6 +559,12 @@
     <Group ID="FileDevice2" />
     <Parameter ID="FileDeviceName2" Value="Diagnosis" />
     <Parameter ID="FileDevicePath2" Value="F:\web\Diagnosis" />
+    <Group ID="FileDevice3" />
+    <Parameter ID="FileDeviceName3" Value="USER" />
+    <Parameter ID="FileDevicePath3" Value="F:\" />
+    <Group ID="FileDevice4" />
+    <Parameter ID="FileDeviceName4" Value="SYSTEM" />
+    <Parameter ID="FileDevicePath4" Value="C:\" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="Admin" />
     <Parameter ID="FtpUserPassword1" Value="b2dkeklN0DR4HlzomfG8N5dlVtI3Hrgd5HBjTL6T4A4=" Description="pw: admin" />

@@ -22,6 +22,7 @@
     <EventBindingsSet refId="EvBiAlarms" />
     <EventBindingsSet refId="EvBiSettings" />
     <EventBindingsSet refId="EvBiDiag1" />
+    <EventBindingsSet refId="EvBiFileExplorer" />
   </EventBindingsSets>
   <Dialogs />
   <Contents>
