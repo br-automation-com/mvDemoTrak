@@ -9,5 +9,8 @@
     <Object Type="Package">Trak</Object>
     <Object Type="Package">VisuPackage</Object>
     <Object Type="Package">mappView</Object>
+    <Object Type="Package">mappFileExplorer</Object>
+    <Object Type="Package">USBdevice</Object>
+    <Object Type="Package">NETdevice</Object>
   </Objects>
 </Package>

@@ -1,0 +1,88 @@
+Version 1.8
+- Update to Automation Studio AS 4.9 and runtime D4.90
+- Revert fix from build 1.7 since bug in AsHTTP is fixed in D4.90
+
+Version 1.7
+- Fixed data start offset in upload was not correct
+- Fixed upload file name can exceed EXPL_ITEM_LENGTH
+- Fixed upload crashing CPU when it exceeds EXPL_UPLOAD_DOWNLOAD_SIZE
+
+Version 1.6
+- Fixed reset button was disabled for network and USB
+- Fixed network root directory is showing all as directories
+- Fixed copy directory does not report error
+- Added ping OK button to network share configuration page
+- Network can now be disconnected with the Reset / Abort button
+
+Version 1.5
+- Update USB helper task
+- Update NET helper task
+- Prevent user from copying directories recursively
+
+Version 1.4
+- Added support for folder download
+- Renamed status to status_text and added status_no to show busy state and error numbers
+
+Version 1.3
+- Code cleanup
+- UI Tweaks
+- Added file device memory information
+- Added current directory entry to be compatible with network shares
+- Change from static IP to DHCP
+- Fixed filter text field and button is disabled when no files are visible
+- Fixed file size calculation
+- Fixed ReplaceString function call
+- Fixed error is not showing up in wait state
+- Fixed dir read and file write error is not reported
+
+Version 1.2
+- Fixed download not working when downloading the same file again
+- Fixed upload not working with large files > 1 MB
+
+Version 1.1
+- Fixed file open click event
+- Added support multiple USB sticks
+- Added message box when uploading or copying file that exists on target
+- Fixed button rename is not disabled when command is running
+
+Version 1.0
+- Added support for file download over mappView
+- Added support for file upload over mappView
+- Code cleanup
+
+Version 0.9
+- Added function to view files by double click or command
+
+Version 0.8
+- Added function for generating list box data provider
+- Fixed typos, cleaned up binding file
+- Created individual packages for NET and USB
+- Fixed enable/disable
+- Added message box before deleting an item
+
+Version 0.7
+- New function rename file or folder
+- Fixed memory leak when last entry in list is used
+- Code optimizations
+
+Version 0.6
+- Changed upper limit of USB polling interval
+- Removed obsolete error numbers
+- Replaced error numbers with constants
+- Removed obsolete variables
+- Fixed old_filter variable size
+- Fixed file size added to file name
+- Disable file device and filter during operation
+
+Version 0.5
+- Main task ported to structure text
+- Allow oversized names for files and folders
+- Fixed variables types
+- Applied python naming convention to all code
+
+Version 0.2
+- Added configuration for network connections
+- Code cleanup
+
+Version 0.1
+- First public release
