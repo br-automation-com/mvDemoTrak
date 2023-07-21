@@ -5,7 +5,7 @@
     <Object Type="Package" Description="AreaContents">AreaContents</Object>
     <Object Type="Package">PgMain</Object>
     <Object Type="Package">PgDiag1</Object>
-    <Object Type="Package">PgFiles</Object>
+    <Object Type="Package">PgFileExplorer</Object>
     <Object Type="Package">PgSDM</Object>
     <Object Type="Package">PgSettings</Object>
     <Object Type="Package">PgAlarms</Object>

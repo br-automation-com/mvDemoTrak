@@ -4,7 +4,7 @@
   <Pages>
     <Page refId="PgMain" />
     <Page refId="PgDiag1" />
-    <Page refId="PgFiles" />
+    <Page refId="PgFileExplorer" />
     <Page refId="PgSDM" />
     <Page refId="PgSettings" />
     <Page refId="PgAlarms" />
@@ -27,12 +27,12 @@
     <Content refId="ContDash" preCache="true" />
     <Content refId="ContHeader" preCache="true" />
     <Content refId="ContNavigation" preCache="true" />
-    <Content refId="ContFiles" />
     <Content refId="ContSDM" />
     <Content refId="ContSettings" />
     <Content refId="ContAlList" />
     <Content refId="ContAlHist" />
     <Content refId="ContDiag1" />
+    <Content refId="ContFileExplorer" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />
