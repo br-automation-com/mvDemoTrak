@@ -9,8 +9,10 @@
     <Object Type="File">BiClientInfo.binding</Object>
     <Object Type="File">BiContDiag1.binding</Object>
     <Object Type="File">BiSettings.binding</Object>
+    <Object Type="File">BiFileExplorer.binding</Object>
     <Object Type="File">EvBiAlarms.eventbinding</Object>
     <Object Type="File">EvBiDiag1.eventbinding</Object>
     <Object Type="File">EvBiSettings.eventbinding</Object>
+    <Object Type="File">EvBiFileExplorer.eventbinding</Object>
   </Objects>
 </Package>

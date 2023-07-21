@@ -16,6 +16,7 @@
     <BindingsSet refId="BiClientInfo" />
     <BindingsSet refId="BiContDiag1" />
     <BindingsSet refId="BiSettings" />
+    <BindingsSet refId="BiFileExplorer" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="EvBiAlarms" />

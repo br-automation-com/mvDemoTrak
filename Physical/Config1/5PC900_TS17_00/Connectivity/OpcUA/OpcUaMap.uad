@@ -11,6 +11,9 @@
     <Module Name="&lt;Default&gt;">
       <GlobalVariables Name="Global Variables">
         <Variable Name="gVisu" RecursiveEnable="2" />
+        <Variable Name="EXPL" RecursiveEnable="2" />
+        <Variable Name="NET" RecursiveEnable="2" />
+        <Variable Name="USB" RecursiveEnable="2" />
       </GlobalVariables>
     </Module>
   </DefaultView>
