@@ -11,9 +11,22 @@
     <Module Name="&lt;Default&gt;">
       <GlobalVariables Name="Global Variables">
         <Variable Name="gVisu" RecursiveEnable="2" />
-        <Variable Name="EXPL" RecursiveEnable="2" />
+        <Variable Name="EXPL" RecursiveEnable="2">
+          <Variable Name="VIS">
+            <Variable Name="VIS[0]">
+              <Variable Name="device_list" RecursiveEnable="2" ChangedCommonProperties="1" />
+            </Variable>
+            <Variable Name="VIS[1]">
+              <Variable Name="device_list" RecursiveEnable="2" ChangedCommonProperties="1" />
+            </Variable>
+          </Variable>
+        </Variable>
         <Variable Name="NET" RecursiveEnable="2" />
-        <Variable Name="USB" RecursiveEnable="2" />
+        <Variable Name="USB" RecursiveEnable="2">
+          <Variable Name="PAR">
+            <Variable Name="is_connected" RecursiveEnable="2" />
+          </Variable>
+        </Variable>
       </GlobalVariables>
     </Module>
   </DefaultView>
