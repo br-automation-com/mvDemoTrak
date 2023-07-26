@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BindingsSet xmlns="http://www.br-automation.com/iat2015/binding/engineering/v2" xmlns:be="http://www.br-automation.com/iat2015/bindingListEmbedded/engineering/v2" xmlns:bt="http://www.br-automation.com/iat2015/bindingListTypes/engineering/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="BiFileExplorer">
-	<Bindings>
-		<Binding mode="twoWay">
-			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.VIS[0].enable_button_set_2" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="flyConfiguration" attribute="enable" />
-		</Binding>	
+	<Bindings>	
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.PAR[0].new_name" attribute="value" />
 			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNewDirA" attribute="value" />
@@ -15,11 +11,11 @@
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.status_text" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtStatusText" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtStatusText" attribute="value" />
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.ERR.text" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtError" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtError" attribute="value" />
 		</Binding>	
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.DAT[0].item_num" attribute="value" />
@@ -111,7 +107,7 @@
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.VIS[0].enable_button_set_2" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="btnDirCreateA" attribute="visible" />
+			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="btnDirCreateA" attribute="enable" />
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.VIS[0].enable_button_set_2" attribute="value" />
@@ -123,7 +119,7 @@
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.status_no" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="numStatusNo" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="numStatusNo" attribute="value" />
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:EXPL.VIS[1].enable_button_set_2" attribute="value" />
@@ -132,39 +128,39 @@
 		
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.enable_connect" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="btnNETconnect" attribute="enable" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="btnNETconnect" attribute="enable" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_name" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETserver_name" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETserver_name" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_ip" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETserver_ip" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETserver_ip" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_port" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETserver_port" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETserver_port" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_domain" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETserver_domain" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETserver_domain" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_protocol" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="ddbNETprotocol" attribute="selectedValue" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="ddbNETprotocol" attribute="selectedValue" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.user_name" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETuser_name" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETuser_name" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.user_password" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETuser_password" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETuser_password" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.ERR.text" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETError" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETError" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.is_linked" attribute="value" />
@@ -172,23 +168,23 @@
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.server_share" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtNETserver_path" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtNETserver_path" attribute="value" />
 		</Binding>		
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:USB.PAR.refresh_interval" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="numUSBintervall" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="numUSBintervall" attribute="value" />
 		</Binding>	
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:USB.PAR.ignore_dongle" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="chkUSBdongle" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="chkUSBdongle" attribute="value" />
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:USB.ERR.text" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="txtUSBError" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="txtUSBError" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:USB.CMD.auto_scan" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="chkUSBenable" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="chkUSBenable" attribute="value" />
 		</Binding>
 		
 		<Binding mode="twoWay">
@@ -269,15 +265,15 @@
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:USB.status" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="numUSBStatusNo" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="numUSBStatusNo" attribute="value" />
 		</Binding>
 		<Binding mode="twoWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.status" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="numNETStatusNo" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="numNETStatusNo" attribute="value" />
 		</Binding>
 		<Binding mode="oneWay">
 			<Source xsi:type="opcUa" refId="::AsGlobalPV:NET.PAR.can_ping" attribute="value" />
-			<Target xsi:type="brease" contentRefId="ContFileExplorer" widgetRefId="btnNETping" attribute="value" />
+			<Target xsi:type="brease" contentRefId="ContSettings" widgetRefId="btnNETping" attribute="value" />
 		</Binding>
 	</Bindings>
 </BindingsSet>

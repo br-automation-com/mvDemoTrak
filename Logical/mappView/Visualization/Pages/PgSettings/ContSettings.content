@@ -1,9 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="ContSettings" height="1415" width="1980" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.DateTimeInput" id="DateTimeInput1" top="110" left="45" width="475" height="60" zIndex="0" format="dd MMM yyyy, HH:mm" value="2023-06-01T00:00:00.000Z" cornerRadius="5px" borderColor="rgba(71, 71, 71, 1)" activeBackColor="rgba(219, 219, 219, 1)" fontName="NotoSansMed" fontSize="40px" />
-    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeDateAndTime" top="40" left="45" width="620" height="55" zIndex="1" value="$IAT/Settings.ChgDateAndTime" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="40px" padding="0px 0px 0px 0px" />
-    <Widget xsi:type="widgets.brease.LanguageSelector" id="LanguageSelector1" top="310" left="45" width="360" height="65" zIndex="2" displaySettings="imageAndText" itemHeight="65" listPosition="bottom" listWidth="360" cornerRadius="5px" backColor="rgba(224, 224, 224, 1)" mouseDownBackColor="rgba(224, 224, 224, 1)" borderColor="rgba(71, 71, 71, 1)" fontSize="38px" fontName="NotoSansMed" bold="false" />
-    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeLanguage" top="230" left="45" width="620" height="55" zIndex="3" value="$IAT/Settings.ChgLanguage" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="40px" padding="0px 0px 0px 0px" />
+    <Widget xsi:type="widgets.brease.DateTimeInput" id="DateTimeInput1" top="90" left="20" width="325" height="50" zIndex="0" format="dd MMM yyyy, HH:mm" value="2023-06-01T00:00:00.000Z" cornerRadius="5px" borderColor="rgba(71, 71, 71, 1)" activeBackColor="rgba(219, 219, 219, 1)" fontName="NotoSansMed" fontSize="30px" />
+    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeDateAndTime" top="40" left="20" width="350" height="40" zIndex="1" value="$IAT/Settings.ChgDateAndTime" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="30px" padding="0px 0px 0px 0px" />
+    <Widget xsi:type="widgets.brease.LanguageSelector" id="LanguageSelector1" top="235" left="20" width="325" height="50" zIndex="2" displaySettings="imageAndText" itemHeight="65" listPosition="bottom" listWidth="360" cornerRadius="5px" backColor="rgba(224, 224, 224, 1)" mouseDownBackColor="rgba(224, 224, 224, 1)" borderColor="rgba(71, 71, 71, 1)" fontSize="30px" fontName="NotoSansMed" bold="false" />
+    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutChangeLanguage" top="180" left="20" width="360" height="40" zIndex="3" value="$IAT/Settings.ChgLanguage" textColor="rgba(0, 0, 0, 1)" textAlign="left" fontName="NotoSansMed" fontSize="30px" padding="0px 0px 0px 0px" />
+    <Widget xsi:type="widgets.brease.GroupBox" id="grpNETdevice" top="15" left="405" width="775" height="505" zIndex="4" text="Network device" backColor="rgba(255, 255, 255, 1)" borderColor="rgba(51, 51, 51, 1)" fontName="NotoSansMed" fontSize="24px">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.Label" id="labNETname" top="10" left="10" width="195" zIndex="0" text="Server Name" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETserver_name" top="8" left="209" width="280" height="35" zIndex="1" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETip" top="50" left="10" width="195" zIndex="2" text="Server IP" textAlign="right" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETserver_ip" top="48" left="209" width="280" height="35" zIndex="3" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETport" top="90" left="10" width="195" zIndex="4" text="Server Port" textAlign="right" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETserver_port" top="88" left="209" width="280" height="35" zIndex="5" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETdomain" top="130" left="10" width="195" zIndex="6" text="Server Domain" textAlign="right" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETserver_domain" top="128" left="209" width="280" height="35" zIndex="7" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETuser_name" top="250" left="10" width="195" zIndex="8" text="User Name" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETuser_name" top="248" left="209" width="280" height="35" zIndex="9" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNET5" top="290" left="10" width="195" zIndex="10" text="User Password" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETuser_password" top="288" left="209" width="280" height="35" zIndex="11" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.DropDownBox" id="ddbNETprotocol" top="208" left="209" width="155" height="35" zIndex="12" dataProvider="[{'value':'cifs','text':'cifs'},{'value':'nfs','text':'nfs'},{'value':'ftp','text':'ftp'},{'value':'tftp','text':'tftp'}]" listWidth="155" selectedValue="cifs" fontSize="22px" fontName="NotoSansMed" bold="false" />
+        <Widget xsi:type="widgets.brease.Label" id="labDeviceA1" top="210" left="10" width="195" zIndex="13" text="Protocol" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETtext1" top="10" left="494" width="246" zIndex="14" text="use server name" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETtext2" top="50" left="494" width="246" zIndex="15" text="or IP address" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETtext3" top="90" left="494" width="246" zIndex="16" text="use default if empty" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETtext4" top="130" left="494" width="246" zIndex="17" text="optional" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETErrorText" top="360" left="10" width="175" zIndex="18" text="Error Text" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextOutput" id="txtNETError" top="358" left="209" width="446" height="35" zIndex="19" borderWidth="1px" cornerRadius="5px" borderStyle="solid" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+        <Widget xsi:type="widgets.brease.Button" id="btnNETconnect" top="225" left="504" width="140" height="45" zIndex="20" text="Connect" cornerRadius="10px" fontSize="22px" fontName="NotoSansMed" />
+        <Widget xsi:type="widgets.brease.Button" id="btnNETreset" top="398" left="504" width="150" height="40" zIndex="21" text="Reset / Abort" cornerRadius="10px" backGroundGradient="linear-gradient(to bottom,#F7F7F7 0%,#f60909 100%)" fontSize="20px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETStatusNo" top="400" left="10" width="175" zIndex="22" text="Status No" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.NumericOutput" id="numNETStatusNo" top="398" left="209" width="131" height="35" zIndex="23" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" borderWidth="1px" cornerRadius="5px" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETpath" top="170" left="10" width="195" zIndex="24" text="Server Path" textAlign="right" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextInput" id="txtNETserver_path" top="168" left="209" width="280" height="35" zIndex="25" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labNETtext5" top="170" left="494" width="246" zIndex="26" text="optional" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.ToggleButton" id="btnNETping" top="283" left="504" width="141" height="45" zIndex="28" mouseDownText="Ping OK" text="Ping not OK" cornerRadius="10px" backGroundGradient="linear-gradient(to bottom,#F7F7F7 0%,#f60909 100%)" disabledBackGroundGradient="linear-gradient(to bottom,#F7F7F7 0%,#f60909 100%)" disabledTextColor="rgba(0, 0, 0, 1)" fontSize="20px" checkedBackGroundGradient="linear-gradient(to bottom, #66ff33 0%,#99cc00 100%)" disabledCheckedBackGroundGradient="linear-gradient(to bottom, #66ff33 0%,#99cc00 100%)" enable="false" />
+      </Widgets>
+    </Widget>
+    <Widget xsi:type="widgets.brease.GroupBox" id="grpUSB" top="15" left="1205" width="585" height="310" zIndex="5" text="USB configuration" backColor="rgba(255, 255, 255, 1)" borderColor="rgba(51, 51, 51, 1)" fontName="NotoSansMed" fontSize="24px">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.CheckBox" id="chkUSBenable" top="10" left="10" width="320" height="35" zIndex="0" boxSize="30" imageAlign="right" text="Enable USB auto detect" textAlign="right" fontSize="24px" fontName="NotoSansMed" bold="false" />
+        <Widget xsi:type="widgets.brease.Label" id="labUSBintervall" top="90" left="10" width="280" height="35" zIndex="1" text="Polling interval" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.NumericInput" id="numUSBintervall" top="90" left="299" height="35" zIndex="2" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" maxValue="10000" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.CheckBox" id="chkUSBdongle" top="50" left="10" width="320" height="35" zIndex="3" boxSize="30" imageAlign="right" text="Ignore license dongle" textAlign="right" fontSize="24px" fontName="NotoSansMed" bold="false" />
+        <Widget xsi:type="widgets.brease.Label" id="labUSBunit" top="93" left="409" width="91" zIndex="4" text="* 10ms" textAlign="left" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.Label" id="labUSBErrorText" top="160" left="10" width="130" zIndex="5" text="Error Text" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.TextOutput" id="txtUSBError" top="155" left="164" width="396" height="35" zIndex="6" borderWidth="1px" cornerRadius="5px" borderStyle="solid" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+        <Widget xsi:type="widgets.brease.Button" id="btnUSBreset" top="200" left="410" width="150" height="40" zIndex="7" text="Reset / Abort" cornerRadius="10px" backGroundGradient="linear-gradient(to bottom,#F7F7F7 0%,#f60909 100%)" fontSize="20px" fontName="NotoSansMed" />
+        <Widget xsi:type="widgets.brease.Label" id="labUSBStatusNo" top="200" left="10" width="130" zIndex="8" text="Status No" textAlign="right" fontName="NotoSansMed" fontSize="24px" />
+        <Widget xsi:type="widgets.brease.NumericOutput" id="numUSBStatusNo" top="202" left="164" width="187" height="35" zIndex="9" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" borderWidth="1px" cornerRadius="5px" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+      </Widgets>
+    </Widget>
+    <Widget xsi:type="widgets.brease.GroupBox" id="grpFileExplorerStatus" top="385" left="1205" width="765" height="135" zIndex="6" text="Status FileExplorer" backColor="rgba(255, 255, 255, 1)" borderColor="rgba(51, 51, 51, 1)" fontName="NotoSansMed" fontSize="24px">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.Label" id="labStatusText" top="5" left="5" width="135" zIndex="0" text="Status Text" textAlign="right" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.TextOutput" id="txtStatusText" top="3" left="140" width="350" height="35" zIndex="1" borderWidth="1px" cornerRadius="5px" borderStyle="solid" fontName="NotoSansMed" fontSize="20px" padding="0px 5px 0px 5px" />
+        <Widget xsi:type="widgets.brease.Label" id="labErrorText" top="45" left="10" width="135" zIndex="2" text="Error Text" textAlign="right" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.TextOutput" id="txtError" top="43" left="140" width="620" height="35" zIndex="3" borderWidth="1px" cornerRadius="5px" borderStyle="solid" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+        <Widget xsi:type="widgets.brease.Label" id="labStatusNo" top="5" left="519" width="125" zIndex="4" text="Status No" textAlign="right" fontName="NotoSansMed" fontSize="22px" />
+        <Widget xsi:type="widgets.brease.NumericOutput" id="numStatusNo" top="3" left="654" height="35" zIndex="5" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" borderWidth="1px" cornerRadius="5px" fontName="NotoSansMed" fontSize="22px" padding="0px 5px 0px 5px" />
+      </Widgets>
+    </Widget>
   </Widgets>
 </Content>

@@ -30,11 +30,11 @@
     <Content refId="ContHeader" preCache="true" />
     <Content refId="ContNavigation" preCache="true" />
     <Content refId="ContSDM" />
-    <Content refId="ContSettings" />
     <Content refId="ContAlList" />
     <Content refId="ContAlHist" />
     <Content refId="ContDiag1" />
     <Content refId="ContFileExplorer" />
+    <Content refId="ContSettings" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />

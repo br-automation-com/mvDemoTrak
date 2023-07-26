@@ -562,9 +562,6 @@
     <Group ID="FileDevice3" />
     <Parameter ID="FileDeviceName3" Value="USER" />
     <Parameter ID="FileDevicePath3" Value="F:\" />
-    <Group ID="FileDevice4" />
-    <Parameter ID="FileDeviceName4" Value="SYSTEM" />
-    <Parameter ID="FileDevicePath4" Value="C:\" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="Admin" />
     <Parameter ID="FtpUserPassword1" Value="b2dkeklN0DR4HlzomfG8N5dlVtI3Hrgd5HBjTL6T4A4=" Description="pw: admin" />
