@@ -14,5 +14,6 @@
     <Object Type="File">EvBiDiag1.eventbinding</Object>
     <Object Type="File">EvBiSettings.eventbinding</Object>
     <Object Type="File">EvBiFileExplorer.eventbinding</Object>
+    <Object Type="File">EvBiHeader.eventbinding</Object>
   </Objects>
 </Package>

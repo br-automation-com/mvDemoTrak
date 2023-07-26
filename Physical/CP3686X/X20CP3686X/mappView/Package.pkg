@@ -14,5 +14,6 @@
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiDiag1.eventbinding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiSettings.eventbinding</Object>
     <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiFileExplorer.eventbinding</Object>
+    <Object Type="File" Reference="true">\Physical\Config1\5PC900_TS17_00\mappView\EvBiHeader.eventbinding</Object>
   </Objects>
 </Package>
