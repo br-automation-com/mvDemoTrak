@@ -1,9 +1,8 @@
-/Binaries
-/Diagnosis
-/Temp
-/Docs
-/*.set
-/*.isopen
 
-
+# ignore Automation Studio files
 debug.log
+src/Temp/
+src/Binaries/
+src/Diagnosis/
+*.set
+/*.isopen
