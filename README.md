@@ -30,6 +30,16 @@ Install on ArSim (or real Hardware) then open browser with
 http://<IP-address>:81
 ```
 
+The project requires the following file structure (also ArSim !):
+```
+F:\
+  +-- \web
+  |
+  +-- \web\SvgData
+  |
+  +-- \web\Diagnosis
+```
+
 # Pages
 
 ## Home
