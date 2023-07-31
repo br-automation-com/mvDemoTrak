@@ -47,6 +47,7 @@
   <Module Name="5PC900_TS17_00" Type="5PC900.TS17-00" Version="2.1.0.0">
     <Connection Connector="SY" TargetModule="5PC910.SX05-00" TargetConnector="SY1" />
     <Parameter ID="ConfigurationID" Value="TrakDemo_Config1" />
+    <Parameter ID="ConfigVersion" Value="1.1.0" />
     <Parameter ID="MotionLoggerSize" Value="2048000" />
     <Parameter ID="TaskClassIdleTime" Value="3000" />
     <Parameter ID="Cyclic1Duration" Value="2000" />
@@ -55,13 +56,13 @@
     <Parameter ID="Cyclic2Tolerance" Value="10000" />
     <Group ID="FileDevice1" />
     <Parameter ID="FileDeviceName1" Value="SvgData" />
-    <Parameter ID="FileDevicePath1" Value="F:\web\SvgData" />
+    <Parameter ID="FileDevicePath1" Value="USER_PATH\web\SvgData" />
     <Group ID="FileDevice2" />
     <Parameter ID="FileDeviceName2" Value="Diagnosis" />
-    <Parameter ID="FileDevicePath2" Value="F:\web\Diagnosis" />
+    <Parameter ID="FileDevicePath2" Value="USER_PATH\web\Diagnosis" />
     <Group ID="FileDevice3" />
     <Parameter ID="FileDeviceName3" Value="USER" />
-    <Parameter ID="FileDevicePath3" Value="F:\" />
+    <Parameter ID="FileDevicePath3" Value="USER_PATH\" />
     <Parameter ID="EthernetHostName" Value="mvdemotrak" />
     <Parameter ID="EthernetDefaultGateway" Value="10.49.40.1" />
     <Group ID="FtpUser1" />
@@ -70,7 +71,7 @@
     <Parameter ID="FtpUserSalt1" Value="in5n/jXa" />
     <Parameter ID="FTPAccessRight1" Value="0" />
     <Parameter ID="FTPdevice1" Value="ALL" />
-    <Parameter ID="WebServerWebDir" Value="F:\web\" />
+    <Parameter ID="WebServerWebDir" Value="USER_PATH\web\" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
   </Module>

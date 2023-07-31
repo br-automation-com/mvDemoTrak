@@ -544,6 +544,7 @@
       <Parameter ID="CycleTime" Value="2000" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="mvDemoTrak_CP1685" />
+    <Parameter ID="ConfigVersion" Value="1.1.0" />
     <Parameter ID="MotionLoggerSize" Value="2048000" />
     <Parameter ID="EnableUsbRemoteInstall" Value="1" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
@@ -555,20 +556,20 @@
     <Parameter ID="Cyclic2Tolerance" Value="10000" />
     <Group ID="FileDevice1" />
     <Parameter ID="FileDeviceName1" Value="SvgData" />
-    <Parameter ID="FileDevicePath1" Value="F:\web\SvgData" />
+    <Parameter ID="FileDevicePath1" Value="USER_PATH\web\SvgData" />
     <Group ID="FileDevice2" />
     <Parameter ID="FileDeviceName2" Value="Diagnosis" />
-    <Parameter ID="FileDevicePath2" Value="F:\web\Diagnosis" />
+    <Parameter ID="FileDevicePath2" Value="USER_PATH\web\Diagnosis" />
     <Group ID="FileDevice3" />
     <Parameter ID="FileDeviceName3" Value="USER" />
-    <Parameter ID="FileDevicePath3" Value="F:\" />
+    <Parameter ID="FileDevicePath3" Value="USER_PATH\" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="Admin" />
     <Parameter ID="FtpUserPassword1" Value="b2dkeklN0DR4HlzomfG8N5dlVtI3Hrgd5HBjTL6T4A4=" Description="pw: admin" />
     <Parameter ID="FtpUserSalt1" Value="LZ6GLOae" />
     <Parameter ID="FTPAccessRight1" Value="0" />
     <Parameter ID="FTPdevice1" Value="ALL" />
-    <Parameter ID="WebServerWebDir" Value="F:\web" Description="default: web\" />
+    <Parameter ID="WebServerWebDir" Value="USER_PATH\web" Description="default: web\" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
   </Module>

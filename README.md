@@ -30,7 +30,7 @@ Install on ArSim (or real Hardware) then open browser with
 http://<IP-address>:81
 ```
 
-The project requires the following file structure (also ArSim !):
+The project requires the following file structure:
 ```
 F:\
   +-- \web
@@ -39,6 +39,13 @@ F:\
   |
   +-- \web\Diagnosis
 ```
+
+for this, this project includes a folder 'USER' which must can transferred via an 'Initial installation' when the project is installed for the first time.
+
+
+![force_initial_installation](/doc/force_initial_installation.png)
+
+(when using ArSim this is done by an 'Offline installation')
 
 # Pages
 
