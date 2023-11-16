@@ -5,4 +5,4 @@ src/Temp/
 src/Binaries/
 src/Diagnosis/
 *.set
-/*.isopen
+*.isopen
