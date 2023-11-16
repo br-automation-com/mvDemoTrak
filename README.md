@@ -20,7 +20,7 @@ the system logger for mappMotion is extended with user loggers to record interna
 Through this the shuttle movements can then be assigned to the internal states of the application.
 
 ## Flight recorder
-in case of an crash the shuttle movements of the last few seconds are recorded and furthermore a system dump is created which contains all hardware information and loggers.
+in case of an crash the shuttle movements of the last few seconds are recorded into (pseudo video in HTML file) and furthermore a system dump is created which contains all hardware information and loggers.
 Both can be uploaded or copied to external storages.
 
 # Usage
@@ -76,3 +76,5 @@ still empty
 ## Alarm Page
 
 ![page_alarm](/doc/page_alarm.png)
+
+
