@@ -1400,3 +1400,22 @@ FUNCTION_BLOCK MC_BR_ShSetUserId_AcpTrak (*sets the user id of a shuttle*)
 		Internal : McInternalType;
 	END_VAR
 END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_AsmCamPrepare_AcpTrak (*Prepare cam for use with each or one specific coupling object.*)
+	VAR_INPUT
+		Assembly : REFERENCE TO McAssemblyType; (*The assembly reference establishes the connection between the function block and the assembly.*)
+		CouplingObjectName: STRING[32]; (*Name of an existing coupling object or empty.*)
+		CamID : UINT; (*index for cam data object*)
+		Cam : McCamDefineType; (*specify cam to use*)
+		Execute : BOOL;  (*Execution of the function block begins on a rising edge of this input.*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Execution successful. Function block is finished.*)
+		Busy : BOOL; (* Function block is active and must continue to be called.*)
+		Error : BOOL; (* Execution error*)
+		ErrorID : DINT; (* Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK

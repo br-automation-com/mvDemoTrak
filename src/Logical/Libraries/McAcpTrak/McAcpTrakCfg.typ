@@ -122,13 +122,13 @@ TYPE
 		PositionError : LREAL; (*Lag error limit for stop of a movement [Measurement units]*)
 		VelocityError : LREAL; (*Velocity lag error limit for stop of a movement [Measurement units/s]*)
 	END_STRUCT;
-	McASMCSSDivType : STRUCT (*Diverter parameters*)
+	McASMCSSDivForceType : STRUCT (*Diverter parameters*)
 		ForceOverrideFactor : REAL; (*Override the default diverter force set value*)
 	END_STRUCT;
 	McASMCSSCPDPSType : STRUCT (*Parameter set 0*)
 		Controller : McASMCSSCtrlSetType; (*Axis controller parameters*)
 		MovementErrorLimits : McASMCSSMoveErrLimType; (*Limit values which lead to a stop reaction in case they are exceeded*)
-		Diverter : McASMCSSDivType; (*Diverter parameters*)
+		Diverter : McASMCSSDivForceType; (*Diverter parameters*)
 	END_STRUCT;
 	McASMCSSCPAPSEnum :
 		( (*Additional parameter sets selector setting*)
@@ -160,7 +160,7 @@ TYPE
 		);
 	McASMCSSCPAPSUPSDivType : STRUCT (*Diverter parameters*)
 		Type : McASMCSSCPAPSUPSDivEnum; (*Diverter selector setting*)
-		UseExplicitValues : McASMCSSDivType; (*Type mcASMCSSCPAPSUPSDIV_USE_EXP_VAL settings*)
+		UseExplicitValues : McASMCSSDivForceType; (*Type mcASMCSSCPAPSUPSDIV_USE_EXP_VAL settings*)
 	END_STRUCT;
 	McASMCSSCPAPSUseParSetType : STRUCT (*Additional parameter set*)
 		Controller : McASMCSSCPAPSUseParSetCtrlType; (*Axis controller parameters*)
@@ -183,6 +183,22 @@ TYPE
 		mcASMCSSSER_ASM := 0, (*Assembly - Error reaction triggered for the whole assembly*)
 		mcASMCSSSER_SEG := 1 (*Segment - Error reaction triggered for the faulty segment, if type of error permits that*)
 		);
+	McASMCSSPosCtrlLagMonEnum :
+		( (*Position controller lag monitor selector setting*)
+		mcASMCSSPCLM_INACT := 0, (*Inactive - The position controller lag is not cyclically monitored*)
+		mcASMCSSPCLM_ACT := 1 (*Active - The position controller lag is cyclically monitored*)
+		);
+	McASMCSSPosCtrlLagMonActType : STRUCT (*Type mcASMCSSPCLM_ACT settings*)
+		WarningLimit : REAL; (*Limit value which leads to a position controller lag warning in case it is exceeded [m]*)
+	END_STRUCT;
+	McASMCSSPosCtrlLagMonType : STRUCT (*Setting for the position controller lag monitor*)
+		Type : McASMCSSPosCtrlLagMonEnum; (*Position controller lag monitor selector setting*)
+		Active : McASMCSSPosCtrlLagMonActType; (*Type mcASMCSSPCLM_ACT settings*)
+	END_STRUCT;
+	McASMCSSDiverterType : STRUCT (*Diverter parameters*)
+		WeakeningEndOverrideFactor : REAL; (*Override the default endpoint where the magnetic field is weakened to actively force a shuttle to the desired track side*)
+		StrengtheningEndOverrideFactor : REAL; (*Override the default endpoint where the magnetic field is strengthened to actively force a shuttle to the desired track side*)
+	END_STRUCT;
 	McASMCSSType : STRUCT (*Common settings for all segments in the assembly*)
 		ActivateSegmentSimulationOnPLC : McASMCSSActSegSimOnPLCEnum; (*All segments of the assembly are simulated on the PLC*)
 		CoggingSegTransCompensation : McASMCSSCogSegTransCompType; (*Compensation of cogging at segment transition to reduce lag and speed error*)
@@ -192,6 +208,8 @@ TYPE
 		ControllerParameters : McASMCSSCtrlParType; (*Segment controller parameters*)
 		ScopeErrorReaction : McASMCSSScpErrReacEnum; (*Setting for the minimal error reaction scope with segment errors*)
 		ShuttleIdentificationTime : UINT; (*Time period in which the identification of the shuttles must take place during power-on [s]*)
+		PositionControllerLagMonitor : McASMCSSPosCtrlLagMonType; (*Setting for the position controller lag monitor*)
+		Diverter : McASMCSSDiverterType; (*Diverter parameters*)
 	END_STRUCT;
 	McASMShConFunEnum :
 		( (*Activate for usage of shuttle convoys*)
@@ -237,7 +255,7 @@ TYPE
 		mcASMSCAE_VIRT_SH := 1, (*Virtual shuttles - Exclude all virtual shuttles from collision avoidance, i.e., do not prevent virtual shuttles from overlapping with any other shuttles*)
 		mcASMSCAE_VIRT_TOWARDS_PHS_SH := 2 (*Virtual towards physical shuttles - Exclude virtual shuttles from collision avoidance towards physical shuttles, i.e., do not prevent virtual shuttles from overlapping with any physical shuttles*)
 		);
-	McASMShColAvExType : STRUCT (*Type of exlusion for collision avoidance*)
+	McASMShColAvExType : STRUCT (*Type of exclusion for collision avoidance*)
 		Type : McASMShColAvExEnum; (*Exclusion selector setting*)
 	END_STRUCT;
 	McASMShColAvMaxMdlDimLenType : STRUCT (*Length of the shuttle model*)
@@ -253,7 +271,7 @@ TYPE
 	END_STRUCT;
 	McASMShColAvType : STRUCT (*Parameter settings for the collision avoidance*)
 		Strategy : McASMShColAvStratType; (*Type of active collision avoidance*)
-		Exclusion : McASMShColAvExType; (*Type of exlusion for collision avoidance*)
+		Exclusion : McASMShColAvExType; (*Type of exclusion for collision avoidance*)
 		MaximumModelDimensions : McASMShColAvMaxMdlDimType; (*Maximum model dimensions for calculating the diverters*)
 	END_STRUCT;
 	McASMShCplgCplgFeatType : STRUCT (*Settings for Cam or GearIn coupling*)
@@ -664,6 +682,19 @@ TYPE
 		Type : McSEGSpdFltrEnum; (*Speed filter selector setting*)
 		Lowpass1stOrder : McSEGSpdFltrLP1stOrdType; (*Type mcSEGSF_LP_1ST_ORD settings*)
 	END_STRUCT;
+	McSEGPosLagMonEnum :
+		( (*Position controller lag monitor selector setting*)
+		mcSEGPCLM_USE_ASM_SET := 0, (*Use assembly setting - Use the defined setting from the assembly configuration*)
+		mcSEGPCLM_INACT := 1, (*Inactive - The position controller lag is not cyclically monitored*)
+		mcSEGPCLM_ACT := 2 (*Active - The position controller lag is cyclically monitored*)
+		);
+	McSEGPosLagMonActType : STRUCT (*Type mcSEGPCLM_ACT settings*)
+		WarningLimit : REAL; (*Limit value which leads to a position controller lag warning in case it is exceeded [m]*)
+	END_STRUCT;
+	McSEGPosLagMonType : STRUCT (*Monitor the position controller lag*)
+		Type : McSEGPosLagMonEnum; (*Position controller lag monitor selector setting*)
+		Active : McSEGPosLagMonActType; (*Type mcSEGPCLM_ACT settings*)
+	END_STRUCT;
 	McCfgSegType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_SEG*)
 		SegmentReference : STRING[250]; (*Name of the referenced segment component*)
 		SegmentSectorReference : STRING[250]; (*Name of the referenced sector component*)
@@ -671,5 +702,6 @@ TYPE
 		ElongationCompensation : McSEGElongationCompEnum; (*Compensation of segment elongation due to change of temperature*)
 		StopReaction : McSEGStopReacType; (*Reaction in case of certain stop conditions*)
 		SpeedFilter : McSEGSpdFltrType; (*Filter for actual speed calculation*)
+		PositionControllerLagMonitor : McSEGPosLagMonType; (*Monitor the position controller lag*)
 	END_STRUCT;
 END_TYPE

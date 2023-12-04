@@ -17,9 +17,9 @@
   <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7" />
   <TaskClass Name="Cyclic#8">
-    <Task Name="FileExplor" Source="mappFileExplorer.FileExplorer.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="UsbDevice" Source="USBdevice.UsbDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="NetDevice" Source="NETdevice.NetDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="FileExplor" Source="mappFileExplorer.FileExplorer.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="UsbDevice" Source="USBdevice.UsbDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="NetDevice" Source="NETdevice.NetDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
   </TaskClass>
   <DataObjects>
     <DataObject Name="McAcpSys" Source="" Memory="UserROM" Language="Binary" />
@@ -81,10 +81,10 @@
     <LibraryObject Name="MpAlarmX" Source="Libraries.MpAlarmX.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="AsMem" Source="Libraries.AsMem.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="AsUSB" Source="Libraries.AsUSB.lby" Memory="UserROM" Language="binary" Debugging="true" />
+    <LibraryObject Name="AsICMP" Source="Libraries.AsICMP.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="arssl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asieccon" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="aruser" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="AsICMP" Source="Libraries.AsICMP.lby" Memory="UserROM" Language="binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>
