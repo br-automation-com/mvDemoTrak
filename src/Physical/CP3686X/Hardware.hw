@@ -569,6 +569,12 @@
     <Parameter ID="FtpUserSalt1" Value="LZ6GLOae" />
     <Parameter ID="FTPAccessRight1" Value="0" />
     <Parameter ID="FTPdevice1" Value="ALL" />
+    <Group ID="FtpUser2" />
+    <Parameter ID="FtpUsername2" Value="service" />
+    <Parameter ID="FtpUserPassword2" Value="y0+bdtT85NEfd+yInx4lMGxqzvQGY/+IGfzWbkQcI6M=" />
+    <Parameter ID="FtpUserSalt2" Value="0i04Zj6L" />
+    <Parameter ID="FTPAccessRight2" Value="0" />
+    <Parameter ID="FTPMSpath2" Value="web\Diagnosis" />
     <Parameter ID="WebServerWebDir" Value="USER_PATH\web" Description="default: web\" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
