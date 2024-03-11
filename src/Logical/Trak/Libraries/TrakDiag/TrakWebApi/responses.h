@@ -1,4 +1,5 @@
 
+void SendResponse( struct TD_WebServices*, const char *contentType, const char *connection = "close" );
 void SendResponse_GeneralInformation(struct TD_WebServices* inst);
 void SendResponse_AssemblyInformation(struct TD_WebServices* inst);
 void SendResponse_ShuttlePositions(struct TD_WebServices* inst);

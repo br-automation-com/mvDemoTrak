@@ -34,7 +34,6 @@ SOFTWARE.
 #include "TrakWebApi/utils.h"
 
 #define STARTUP					0
-#define GET_SEGMENT_LIST		10
 #define GET_SEGMENT_INFO		20
 #define W_HTTP_REQUESTS			100
 #define HTTP_SERV_RESPONSE		110
@@ -48,10 +47,13 @@ SOFTWARE.
 #define CLOSE_SVG_FILE			180
 #define SEND_SVGDATA			190			
 #define FREE_UP_MEMORY			200
+#define SHUTTLE_INFO			300
+#define SHUTTLE_ERROR_TEXTS		310
+#define SEND_SHUTTLE_INFO		320
 
 
 #define INTERNAL_ERROR						9000
-#define INTERNAL_ERROR_GETSEGMENT			9001
+#define INTERNAL_ERROR_SEGMENTINFO			9001
 #define INTERNAL_ERROR_PVXGETADR			9002
 #define INTERNAL_ERROR_HTTP					9003
 #define INTERNAL_ERROR_FILEINFO_SVG			9004
@@ -64,5 +66,5 @@ SOFTWARE.
 #define INTERNAL_ERROR_FREEMEMORY			9011
 
 
-const char* AcpTrakPLCopenState[] = { "Disabled", "Homing", "Ready", "Stopping", "Errorstop", "Startup", "Invalid Configuration" };
+
 

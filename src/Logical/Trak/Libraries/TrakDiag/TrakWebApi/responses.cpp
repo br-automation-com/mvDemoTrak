@@ -45,34 +45,34 @@ SOFTWARE.
 #include "index_js.h"
 #include "panzoom_js.h"
 #include "index_html.h"
+#include "utils.h"
 
 
 
 const char* JavascriptBoolean[] = { "false", "true" };
 
+void SendResponse( struct TD_WebServices* inst, const char *contentType, const char *connection ){
+	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
+	std::strcpy( (char*) inst->webData.responseHeader.contentType, contentType );
+	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
+	std::strcpy( (char*) inst->webData.responseHeader.connection, connection );
+	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	inst->webData.fbHttpService.send = true;
+}
+
+
 void SendResponse_GeneralInformation(struct TD_WebServices* inst){
 	sprintf( (char*) inst->webData.responseData, "{\"TrakDiag\" : \"" STRINGIFY(_TrakDiag_VERSION) "\","
 												 "\"McAcpTrak\" : \"%s\""
 												 "}", inst->acpTrakVersion );
-	
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "application/json; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "application/json; charset=iso-8859-1" );
 }
 
 
 
 void SendResponse_AssemblyInformation(struct TD_WebServices* inst){
-// not available in 5.21
-//						int plcOpen = inst->asmInfo.PLCopenState;
-//						if( plcOpen > mcACPTRAK_INVALID_CONFIGURATION ){
-//							plcOpen = mcACPTRAK_INVALID_CONFIGURATION;
-//						}
 	sprintf( (char*) inst->webData.responseData, 
 			"{"
-//								"\"PLCopen\" : \"%s\"," // not available in 5.21
 			"\"CommunicationReady\" : %s,"
 			"\"ReadyForPowerOn\" : %s,"
 			"\"PowerOn\" : %s,"
@@ -82,7 +82,6 @@ void SendResponse_AssemblyInformation(struct TD_WebServices* inst){
 			"\"ShuttlesCount\" : %d,"
 			"\"ShuttlesInErrorStopCount\" : %d"
 			"}", 
-//								AcpTrakPLCopenState[plcOpen], // not available in 5.21
 			JavascriptBoolean[inst->asmInfo.CommunicationReady],
 			JavascriptBoolean[inst->asmInfo.ReadyForPowerOn],
 			JavascriptBoolean[inst->asmInfo.PowerOn],
@@ -92,12 +91,7 @@ void SendResponse_AssemblyInformation(struct TD_WebServices* inst){
 			inst->asmInfo.ShuttlesCount,
 			inst->asmInfo.ShuttlesInErrorStopCount
 	);
-	
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "application/json; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "application/json; charset=iso-8859-1" );
 }
 
 void SendResponse_ShuttlePositions(struct TD_WebServices* inst){
@@ -128,13 +122,67 @@ void SendResponse_ShuttlePositions(struct TD_WebServices* inst){
 		}
 	}
 	std::strcat( (char*) inst->webData.responseData, "]" ); /* close JSON */
-
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "application/json; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "keep-Alive" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "application/json; charset=iso-8859-1", "keep-alive" );
 }
+
+
+void SendResponse_SingleShuttleInfo(struct TD_WebServices* inst){
+	inst->webData.fbGetParamUrl.enable = false; /* reset fb */
+	inst->webData.fbGetParamUrl.pSrc = (UDINT) &inst->webData.uri;
+	inst->webData.fbGetParamUrl.pParam = (UDINT) "index";
+	inst->webData.fbGetParamUrl.pValue = (UDINT) inst->webData.urlParamBuffer;
+	inst->webData.fbGetParamUrl.valueSize = sizeof(inst->webData.urlParamBuffer);
+	httpGetParamUrl( &inst->webData.fbGetParamUrl );
+	inst->webData.fbGetParamUrl.enable = true;
+	do {
+		httpGetParamUrl( &inst->webData.fbGetParamUrl );
+	} while( inst->webData.fbGetParamUrl.status == ERR_FUB_BUSY );
+
+	if( inst->webData.fbGetParamUrl.status == 0 ){
+		unsigned shuttleIndex = std::atoi( (char*) inst->webData.urlParamBuffer );
+		TD_ServicesShuttleType *shuttle = 0;
+		bool found = false;
+
+		for( unsigned n = 0; n < inst->ShuttleInfo.numberOfEntries; ++n ){
+			shuttle = &inst->ShuttleInfo.shuttle[n]; 
+			if( shuttleIndex == shuttle->index ){
+				found = true;
+				break;
+			}
+		}
+		if( found ){ /* shuttle found */
+
+			LREAL segmentLength = 0.0;
+			STRING segmentName[32] = {0};
+			for( int n = 0; n < inst->SegInfo.numberOfSegments; ++n ){
+				if( shuttle->segmentID == inst->SegInfo.segmentInfo[n].ID ){
+					segmentLength = inst->SegInfo.segmentInfo[n].Length;
+					std::strcpy( segmentName, inst->SegInfo.segmentInfo[n].Name );
+					break;
+				}
+			}
+
+			std::sprintf( inst->webData.responseData, 
+				"{ \"result\" : \"ok\", \"index\":%d, \"active\": %s, \"virtual\": %s, \"segmentID\":%d, \"segmentName\":\"%s\", \"segmentPosition\":%f, \"PLCopen\":\"%s\" }", 
+				shuttleIndex, shuttle->flags&0x01 ? "true" : "false", shuttle->flags&0x02 ? "true" : "false", shuttle->segmentID, 
+				segmentName, shuttle->segmentPosition/100.0*segmentLength, GetAxisPlcOpenStateString(shuttle->plcOpenState) );
+		}
+		else {
+			std::sprintf( inst->webData.responseData, "{ \"result\" : \"shuttle with given index not found\", \"index\":%d }", shuttleIndex );
+		}
+	}
+	else if( inst->webData.fbGetParamUrl.status == httpERR_NOT_FOUND ){
+		std::sprintf( inst->webData.responseData, "{ \"result\" : \"GET parameter invalid\" }" );	
+	}
+	else { /* internal error */
+		std::sprintf( inst->webData.responseData, "{ \"result\" : \"%d\" }", inst->webData.fbGetParamUrl.status  );
+	}
+	inst->webData.fbGetParamUrl.enable = false; /* reset fb */
+	httpGetParamUrl( &inst->webData.fbGetParamUrl );
+
+	SendResponse( inst, "application/json; charset=iso-8859-1" );
+}
+
 
 
 void SendResponse_SegmentList(struct TD_WebServices* inst){
@@ -153,11 +201,7 @@ void SendResponse_SegmentList(struct TD_WebServices* inst){
 			break;
 	} 
 	std::strcat( (char*) inst->webData.responseData, "]" ); /* close JSON */
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "application/json; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "application/json; charset=iso-8859-1" );
 }
 
 
@@ -182,73 +226,45 @@ void SendResponse_SegmentStatus(struct TD_WebServices* inst){
 			break;
 	} 
 	std::strcat( (char*) inst->webData.responseData, "]" ); /* close JSON */
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "application/json; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "application/json; charset=iso-8859-1" );
 }
 
 
 void SendResponse_IndexCss(struct TD_WebServices* inst){
 	std::sprintf( (char*) inst->webData.responseData, INDEX_CSS, "Assembly" );
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "text/css; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "text/css; charset=iso-8859-1" );
 }
 
 	
 void SendResponse_IndexJs(struct TD_WebServices* inst){
 	std::sprintf( (char*) inst->webData.responseData, INDEX_JS, "Assembly" );
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "text/javascript; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "text/javascript; charset=iso-8859-1" );
 }
 
 
 void SendResponse_PanZoomJs(struct TD_WebServices* inst){
 	std::sprintf( (char*) inst->webData.responseData, PANZOOM_JS, "Assembly" );
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "text/javascript; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "text/javascript; charset=iso-8859-1" );
 }
-
 
 
 void SendResponse_IndexHtml(struct TD_WebServices* inst){
 	std::sprintf( (char*) inst->webData.responseData, INDEX_HTML, "Assembly" );
-	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->webData.responseData );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "text/html; charset=iso-8859-1");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
+	SendResponse( inst, "text/html; charset=iso-8859-1" );
 }
 
 
 void SendResponse_Svgdata(struct TD_WebServices *inst){
+	SendResponse( inst, "image/svg+xml" );
 	inst->webData.fbHttpService.pResponseData = inst->pDataObject;
 	inst->webData.fbHttpService.responseDataLen = std::strlen( (char*) inst->pDataObject );
-	std::strcpy( (char*) inst->webData.responseHeader.contentType, "image/svg+xml");
-	inst->webData.responseHeader.contentLength = inst->webData.fbHttpService.responseDataLen;
-	std::strcpy( (char*) inst->webData.responseHeader.connection, "close" );
-	std::strcpy( (char*) inst->webData.responseHeader.keepAlive, "timeout=20, max=5" );
 }
 
 
 void SendResponse_404(struct TD_WebServices* inst){
 	std::strcpy( (char*) inst->webData.responseData, "404 - Not Found" );
 	std::strcpy( inst->webData.responseHeader.status, "404 Not Found" );
-	std::strcpy( inst->webData.responseHeader.contentType, "text/plain; charset=utf-8" );
-	inst->webData.responseHeader.contentLength = std::strlen( (char*) inst->webData.responseData );
-	inst->webData.fbHttpService.responseDataLen = inst->webData.responseHeader.contentLength;
-	std::strcpy( inst->webData.responseHeader.connection, "close" );
-	std::strcpy( inst->webData.responseHeader.keepAlive, "" );
+	SendResponse( inst, "text/plain; charset=utf-8" );
 }
 
 

@@ -122,7 +122,7 @@ END_FUNCTION_BLOCK
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK TD_CrashReport (*Read motion logger*)
+{REDUND_ERROR} FUNCTION_BLOCK TD_CrashReport (*Read motion logger*)
 	VAR_INPUT
 		Execute : BOOL;
 		pLoggerEntries : {REDUND_UNREPLICABLE} UDINT; (*pointer to TD_LoggerEntryType[]*)
@@ -173,7 +173,7 @@ END_FUNCTION_BLOCK
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK TD_LoggerReadEntry (*(internal use)*)
+{REDUND_ERROR} FUNCTION_BLOCK TD_LoggerReadEntry (*(internal use)*)
 	VAR_INPUT
 		Execute : BOOL;
 		Ident : ArEventLogIdentType;
@@ -195,6 +195,101 @@ FUNCTION_BLOCK TD_LoggerReadEntry (*(internal use)*)
 	END_VAR
 END_FUNCTION_BLOCK
 
+{REDUND_ERROR} FUNCTION_BLOCK TD_GetShuttles (*Returns the axis references of all shuttles of the assembly that corresponds to the selected mode*)
+	VAR_INPUT
+		Assembly : REFERENCE TO McAssemblyType;
+		Execute : BOOL; (*Assembly reference*)
+		SelectionMode : McAcpTrakGetShuttleModeEnum; (*Criteria according to which the shuttles to be output are selected*)
+	END_VAR
+	VAR_OUTPUT
+		Shuttle : ARRAY[0..TD_MAX_SUPPORTED_SHUTTLES_ASM] OF TD_GetShuttlesShuttleInfoType;
+		Count : UINT;
+		Done : BOOL;
+		Busy : BOOL;
+		Error : BOOL;
+		ErrorID : DINT;
+	END_VAR
+	VAR
+		step : UINT;
+		fbGetShuttle : MC_BR_AsmGetShuttleSel_AcpTrak;
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_ERROR} FUNCTION_BLOCK TD_ShuttleErrorTexts (*Read last error records of a shuttle given by ID or Axis reference*)
+	VAR_INPUT
+		Execute : BOOL;
+		Assembly : REFERENCE TO McAssemblyType;
+		Axis : REFERENCE TO McAxisType; (*Shuttle Axis reference*)
+		Index : UDINT; (*Shuttles index (if Axis is 0)*)
+		Language : McLanguageEnum;
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL;
+		Busy : BOOL;
+		Error : BOOL;
+		StatusID : DINT;
+		NumberOfRecords : UINT;
+		Records : McErrorRecordsType;
+	END_VAR
+	VAR
+		step : UINT;
+		axis : McAxisType;
+		fbAsmGetShuttle : MC_BR_AsmGetShuttle_AcpTrak;
+		fbReadErrorText : MC_BR_ReadErrorText;
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_ERROR} FUNCTION_BLOCK TD_SegmentsInfo (*Gets information about all segments in assembly*)
+	VAR_INPUT
+		Execute : BOOL;
+		Assembly : REFERENCE TO McAssemblyType;
+		MaxCount : UINT; (*max. permitted number of segments in Segments resp. SegmentsInfo*)
+		Segments : REFERENCE TO McSegmentType; (*pointer to array of McSegmentType*)
+		SegmentsInfo : REFERENCE TO McAcpTrakSegGetInfoType; (*pointer to array of McAcpTrakSegGetInfoType*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL;
+		Busy : BOOL;
+		Error : BOOL;
+		StatusID : DINT;
+		Count : UINT;
+	END_VAR
+	VAR
+		step : UINT;
+		fbGetSegment : MC_BR_AsmGetSegment_AcpTrak;
+		fbSegGetInfo : MC_BR_SegGetInfo_AcpTrak;
+		n : UINT;
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_ERROR} FUNCTION_BLOCK TD_LimitFileNumber (*(internal use)*)
+	VAR_INPUT
+		Execute : BOOL;
+		FileDeviceName : STRING[32]; (*file device*)
+		DirectoryName : STRING[32]; (*directory name*)
+		FileNamePattern : STRING[128]; (*regular expression for file names*)
+		MaxCount : UINT; (*limited number of files*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL;
+		Busy : BOOL;
+		Error : BOOL;
+		ErrorID : DINT;
+		ErrorFileNamePattern : STRING[80]; (*extended error information*)
+	END_VAR
+	VAR
+		step : UINT;
+		fbDirOpen : DirOpen;
+		fbDirRead : DirReadEx;
+		fbDirClose : DirClose;
+		fbFileDelete : FileDelete;
+		dirEntry : fiDIR_READ_EX_DATA;
+		fileCount : UINT;
+		timeStamps : ARRAY[0..100] OF DATE_AND_TIME;
+		pass : USINT;
+	END_VAR
+END_FUNCTION_BLOCK
+
 {REDUND_ERROR} FUNCTION_BLOCK TD_Recorder (*Shuttle 'flight recorder'*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
 	VAR_INPUT
 		Enable : BOOL;
@@ -205,6 +300,8 @@ type of McAcpTrakShuttleData[] if no shuttle user data is defined, see MC_BR_Asm
 		UserDataSize : USINT; (*shuttle user data size in bytes*)
 		DataObjectName : STRING[10]; (*optional: temporary data object for memory allocation*)
 		FileDeviceName : STRING[32]; (*file device where recorder data should be stored*)
+		FileNamePrefix : STRING[32]; (*filename prefix used for generated recorder file*)
+		MaxNumberOfRecordings : {REDUND_UNREPLICABLE} USINT; (*Maximum number of recordings*)
 		NumberOfCycles : USINT; (*Refresh rate in number of task cycles (min. 3)*)
 		Trigger : BOOL; (*stops recording and save output file*)
 	END_VAR
@@ -238,6 +335,7 @@ type of McAcpTrakShuttleData[] if no shuttle user data is defined, see MC_BR_Asm
 		fbGetSegment : MC_BR_AsmGetSegment_AcpTrak;
 		fbSegGetInfo : MC_BR_SegGetInfo_AcpTrak;
 		fbSystemDump : SdmSystemDump;
+		fbLimitFileNumber : TD_LimitFileNumber;
 		pAssembly : REFERENCE TO McAssemblyType;
 		tonTriggerDelay : TON;
 		fbRtInfo : RTInfo;
@@ -283,10 +381,10 @@ END_FUNCTION_BLOCK
 		fbFileClose : FileClose;
 		fbFileOpen : FileOpen;
 		fbFileRead : FileReadEx;
-		fbGetSegment : MC_BR_AsmGetSegment_AcpTrak;
-		fbSegGetInfo : MC_BR_SegGetInfo_AcpTrak;
+		fbSegmentsInfo : TD_SegmentsInfo;
 		fbAsmReadInfo : MC_BR_AsmReadInfo_AcpTrak;
 		fbSegReadInfo : ARRAY[0..TD_MAX_SUPPORTED_SEGMENTS_ASM] OF MC_BR_SegReadInfo_AcpTrak;
+		fbShuttleErrorTexts : TD_ShuttleErrorTexts;
 		pAssembly : REFERENCE TO McAssemblyType;
 		fbRtInfo : RTInfo;
 		asmInfo : McAcpTrakAsmInfoType; (*assembly information*)

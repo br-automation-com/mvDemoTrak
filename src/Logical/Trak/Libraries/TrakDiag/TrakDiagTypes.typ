@@ -1,9 +1,13 @@
 
 TYPE
+	TD_GetShuttlesShuttleInfoType : 	STRUCT 
+		Axis : McAxisType; (*shuttle's axis*)
+		ShuttleID : UDINT; (*shuttle's unique ID*)
+	END_STRUCT;
 	TD_HttpServiceType : 	STRUCT 
 		fbHttpService : httpService;
 		fbGetParamUrl : httpGetParamUrl;
-		urlParamBuffer : STRING[10];
+		urlParamBuffer : STRING[256];
 		tempDINT : DINT;
 		serviceName : STRING[80];
 		uri : STRING[256];
@@ -13,6 +17,7 @@ TYPE
 		responseData : STRING[65536];
 		statistics : httpStatistics_t;
 		lastError : UINT;
+		shuttle : McAcpTrakShuttleData;
 	END_STRUCT;
 	TD_ServicesSegInfoType : 	STRUCT  (*segment information*)
 		numberOfSegments : UINT;
