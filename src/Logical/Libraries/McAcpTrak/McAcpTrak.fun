@@ -1419,3 +1419,20 @@ FUNCTION_BLOCK MC_BR_AsmCamPrepare_AcpTrak (*Prepare cam for use with each or on
 		Internal : McInternalType;
 	END_VAR
 END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_ShSetMotionFilter_AcpTrak (*sets motion filter parameter of a shuttle*)
+	VAR_INPUT
+		Axis : REFERENCE TO McAxisType; (*the shuttle reference establishes the connection between the function block and the shuttle.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		MotionFilterParameter : McAcpTrakShFilterParType; (*Motion filter parameter*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Function block is finished*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		Error : BOOL; (*error occurred during operation*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK

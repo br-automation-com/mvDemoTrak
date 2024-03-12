@@ -312,6 +312,7 @@ TYPE
 		Orientation : McDirectionEnum; 			(*defines the orientation of the shuttle on reference sector*)
 		Velocity : REAL; 						(*current velocity*)
 		Acceleration : REAL; 					(*current acceleration*)
+		JerkTime : REAL; 						(*current jerk filter time*)
 		InRest : BOOL; 							(*movement state of the shuttle's set value*)
 		SegmentPosition : McAcpTrakSegPositionType; (* segment position of the shuttle *)
 		EncoderDiscrepancy : LREAL; 			(*the maximum discrepancy between all segment encoder positions of this shuttle*)
@@ -664,7 +665,14 @@ TYPE
 		Jerk : REAL; 				(*maximum jerk*)
 		Direction : McDirectionEnum; (*movement direction*)
 		Virtual : BOOL; 			(*Create a virtual shuttle if true*)
+		Mode: McAcpTrakShAddModeEnum;	(*Mode selector for adding shuttles*)
+		UserID : STRING[32]; 		(*User ID of the shuttle*)
 	END_STRUCT;
+	
+	 McAcpTrakShAddModeEnum :
+	 (
+	 	 mcACPTRAK_ADD_IMMEDIATE 		(*add immediately*)
+	 );
 
 	 McAcpTrakSecAddShWithMovInfoType : STRUCT
 	 	PLCopenState : McAxisPLCopenStateEnum; (*PLCopen state*)
@@ -675,8 +683,9 @@ TYPE
 		Orientation : McDirectionEnum; 	(*orientation of the shuttle in the sector*)
 		Deceleration : REAL; 			(*maximum deceleration of a moving shuttle*)
 		Virtual : BOOL; 				(*Create a virtual shuttle if true*)
+		UserID : STRING[32]; 			(*User ID of the shuttle*)
 	END_STRUCT;
-
+	
 	 McAcpTrakAsmInfoType : STRUCT
 	 	CommunicationReady : BOOL; (*"Network" of all segments of the assembly is initialized and ready for communication*)
 		ReadyForPowerOn : BOOL; (*the controllers of all segments of the assembly are ready to be switched on*)
@@ -885,9 +894,15 @@ TYPE
 		Deceleration : REAL; (*maximum deceleration*)
 	END_STRUCT;
 
-	McAcpTrakAdvShSetMoveParType : STRUCT
-		JerkFilterTime : REAL; (*Jerk filter time*)
+	McAcpTrakShFilterParType : STRUCT
+		Mode : McAcpTrakShFilterModeEnum; (*set mode selector*)
+		JerkTime : REAL; (*jerk filter time*)
 	END_STRUCT;
+	
+	McAcpTrakShFilterModeEnum :
+	(
+	 	 mcACPTRAK_SET_IMMEDIATE 		(*set immediately*)
+	);
 
 	McAcpTrakConDeleteModeEnum :
 	(
@@ -939,6 +954,7 @@ TYPE
 		Deceleration : REAL; (*maximum deceleration of a moving shuttle*)
 		StartPosition : LREAL; (*Start position of the sector position interval to switch to*)
 		EndPosition : LREAL; (*Start position of the sector position interval to switch to*)
+		FlipOrientation : BOOL; (*Flip the shuttle orientation on the target sector*)
 	END_STRUCT;
 
 	McAcpTrakShReadSecPosInfoType : STRUCT

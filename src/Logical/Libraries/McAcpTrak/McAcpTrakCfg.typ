@@ -216,6 +216,42 @@ TYPE
 		mcASMSCF_INACT := 0, (*Inactive - Convoy functionality is not used*)
 		mcASMSCF_ACT := 1 (*Active - Convoy functionality is used*)
 		);
+	McASMShSSASEnum :
+		( (*Switch sector after stop selector setting*)
+		mcASMSSSAS_SW_ONTO_SEG_SEC := 0, (*Switch onto segment sector - Switch onto the segment sector*)
+		mcASMSSSAS_AUT_ATT := 1, (*Auto attach - Autoattach*)
+		mcASMSSSAS_RMN_ON_INT_SEC := 2 (*Remain on internal sector - Remain on the internal sector*)
+		);
+	McASMShSSASSwOntoSegSecScpEnum :
+		( (*The scope of the setting*)
+		mcASMSSSASSOSSS_SH_ONLY := 0, (*Shuttle only - Switch the shuttle or the trivial convoy onto the segment sector*)
+		mcASMSSSASSOSSS_ALL := 1 (*All - Switch the shuttle or convoy onto the segment sector*)
+		);
+	McASMShSSASSwOntoSegSecType : STRUCT (*Type mcASMSSSAS_SW_ONTO_SEG_SEC settings*)
+		Scope : McASMShSSASSwOntoSegSecScpEnum; (*The scope of the setting*)
+	END_STRUCT;
+	McASMShSSASAutAttFallbackEnum :
+		( (*The fallback strategy if auto attachment fails*)
+		mcASMSSSASAAF_SEG_SEC := 0, (*Segment sector - Switch onto segment sector*)
+		mcASMSSSASAAF_INT_SEC := 1 (*Internal sector - Remain on internal sector*)
+		);
+	McASMShSSASAutAttType : STRUCT (*Type mcASMSSSAS_AUT_ATT settings*)
+		Fallback : McASMShSSASAutAttFallbackEnum; (*The fallback strategy if auto attachment fails*)
+	END_STRUCT;
+	McASMShSSASRmnOnIntSecScpEnum :
+		( (*The scope of the setting*)
+		mcASMSSSASROISS_CON_ONLY := 0, (*Convoy only - The non-trivial convoy remains on the internal sector. The shuttle or trivial convoy switches onto the segment sector*)
+		mcASMSSSASROISS_ALL := 1 (*All - The shuttle or convoy remains on the internal sector*)
+		);
+	McASMShSSASRmnOnIntSecType : STRUCT (*Type mcASMSSSAS_RMN_ON_INT_SEC settings*)
+		Scope : McASMShSSASRmnOnIntSecScpEnum; (*The scope of the setting*)
+	END_STRUCT;
+	McASMShSSASType : STRUCT (*Switch the shuttle or convoy sector if the shuttle or convoy is on an internal sector after stop or error stop*)
+		Type : McASMShSSASEnum; (*Switch sector after stop selector setting*)
+		SwitchOntoSegmentSector : McASMShSSASSwOntoSegSecType; (*Type mcASMSSSAS_SW_ONTO_SEG_SEC settings*)
+		AutoAttach : McASMShSSASAutAttType; (*Type mcASMSSSAS_AUT_ATT settings*)
+		RemainOnInternalSector : McASMShSSASRmnOnIntSecType; (*Type mcASMSSSAS_RMN_ON_INT_SEC settings*)
+	END_STRUCT;
 	McASMShDistResType : STRUCT (*Parameter setting for shuttle distance reserves*)
 		CollisionAvoidance : LREAL; (*Safety distance which is added to the distance a shuttle has to keep to obstacles [Measurement units]*)
 		ErrorStopAvoidance : LREAL; (*Additional safety distance between shuttles in order to avoid error stops [Measurement units]*)
@@ -285,6 +321,7 @@ TYPE
 		MaximumDelegatedCommandCount : UINT; (*Maximum count of shuttles which start a command triggered by an assembly command within one cycle (0 implies no limit)*)
 		DecelerationAtAssemblyCommands : REAL; (*Deceleration used for shuttle stops triggered by assembly commands (0.0 implies using respective axis limits)*)
 		ConvoyFunctionality : McASMShConFunEnum; (*Activate for usage of shuttle convoys*)
+		SwitchSectorAfterStop : McASMShSSASType; (*Switch the shuttle or convoy sector if the shuttle or convoy is on an internal sector after stop or error stop*)
 		DistanceReserves : McASMShDistResType; (*Parameter setting for shuttle distance reserves*)
 		ShuttleStereotypes : McASMShShSttType; (*Parameter settings for the shuttles*)
 		MagnetPlateConfigurations : McASMShMagnPltCfgType; (*Parameter settings for the magnet plates*)
@@ -660,6 +697,11 @@ TYPE
 		mcSEGEC_INACT := 1, (*Inactive - No compensation of segment elongation*)
 		mcSEGEC_ACT := 2 (*Active - Compensation of segment elongation*)
 		);
+	McSEGAsymmetricCurCompEnum :
+		( (*Compensation of the asymmetrical load at the middle voltage caused by the current distribution*)
+		mcSEGACC_INACT := 0, (*Inactive - No compensation of the asymmetric current load*)
+		mcSEGACC_ACT := 1 (*Active - Compensation of the asymmetric current load*)
+		);
 	McSEGStopReacEnum :
 		( (*Stop reaction selector setting*)
 		mcSEGSR_USE_ASM_SET := 0, (*Use assembly setting - Use the defined setting from the assembly configuration*)
@@ -700,6 +742,7 @@ TYPE
 		SegmentSectorReference : STRING[250]; (*Name of the referenced sector component*)
 		SegmentSectorDirection : McSEGSegSecDirEnum; (*Direction of the referenced sector component*)
 		ElongationCompensation : McSEGElongationCompEnum; (*Compensation of segment elongation due to change of temperature*)
+		AsymmetricCurrentCompensation : McSEGAsymmetricCurCompEnum; (*Compensation of the asymmetrical load at the middle voltage caused by the current distribution*)
 		StopReaction : McSEGStopReacType; (*Reaction in case of certain stop conditions*)
 		SpeedFilter : McSEGSpdFltrType; (*Filter for actual speed calculation*)
 		PositionControllerLagMonitor : McSEGPosLagMonType; (*Monitor the position controller lag*)

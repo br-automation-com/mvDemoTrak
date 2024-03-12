@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McAcpTrak 5.23.1 */
+/* McAcpTrak 5.24.1 */
 
 #ifndef _MCACPTRAK_
 #define _MCACPTRAK_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McAcpTrak_VERSION
-#define _McAcpTrak_VERSION 5.23.1
+#define _McAcpTrak_VERSION 5.24.1
 #endif
 
 #include <bur/plctypes.h>
@@ -264,6 +264,10 @@ typedef enum McAcpTrakSegErrorReasonEnum
 	mcACPTRAK_SEG_ERROR_CHANNEL
 } McAcpTrakSegErrorReasonEnum;
 
+typedef enum McAcpTrakShAddModeEnum
+{	mcACPTRAK_ADD_IMMEDIATE
+} McAcpTrakShAddModeEnum;
+
 typedef enum McAcpTrakAsmErrorReasonEnum
 {	mcACPTRAK_ASM_ERROR_NONE,
 	mcACPTRAK_ASM_ERROR_UNSPECIFIED,
@@ -321,6 +325,10 @@ typedef enum McAcpTrakCouplingModeEnum
 {	mcACPTRAK_COUPL_DIST,
 	mcACPTRAK_COUPL_TCP_DIST
 } McAcpTrakCouplingModeEnum;
+
+typedef enum McAcpTrakShFilterModeEnum
+{	mcACPTRAK_SET_IMMEDIATE
+} McAcpTrakShFilterModeEnum;
 
 typedef enum McAcpTrakConDeleteModeEnum
 {	mcACPTRAK_CON_DELETE_ANY_CASE,
@@ -417,6 +425,27 @@ typedef enum McASMShConFunEnum
 {	mcASMSCF_INACT = 0,
 	mcASMSCF_ACT = 1
 } McASMShConFunEnum;
+
+typedef enum McASMShSSASEnum
+{	mcASMSSSAS_SW_ONTO_SEG_SEC = 0,
+	mcASMSSSAS_AUT_ATT = 1,
+	mcASMSSSAS_RMN_ON_INT_SEC = 2
+} McASMShSSASEnum;
+
+typedef enum McASMShSSASSwOntoSegSecScpEnum
+{	mcASMSSSASSOSSS_SH_ONLY = 0,
+	mcASMSSSASSOSSS_ALL = 1
+} McASMShSSASSwOntoSegSecScpEnum;
+
+typedef enum McASMShSSASAutAttFallbackEnum
+{	mcASMSSSASAAF_SEG_SEC = 0,
+	mcASMSSSASAAF_INT_SEC = 1
+} McASMShSSASAutAttFallbackEnum;
+
+typedef enum McASMShSSASRmnOnIntSecScpEnum
+{	mcASMSSSASROISS_CON_ONLY = 0,
+	mcASMSSSASROISS_ALL = 1
+} McASMShSSASRmnOnIntSecScpEnum;
 
 typedef enum McASMShMagnPltCfgShTypEnum
 {	mcASMSMPCST_ST8F1SA100 = 0,
@@ -571,6 +600,11 @@ typedef enum McSEGElongationCompEnum
 	mcSEGEC_ACT = 2
 } McSEGElongationCompEnum;
 
+typedef enum McSEGAsymmetricCurCompEnum
+{	mcSEGACC_INACT = 0,
+	mcSEGACC_ACT = 1
+} McSEGAsymmetricCurCompEnum;
+
 typedef enum McSEGStopReacEnum
 {	mcSEGSR_USE_ASM_SET = 0,
 	mcSEGSR_INDUCT_HALT = 1,
@@ -666,6 +700,7 @@ typedef struct McAcpTrakShCurrentValuesType
 	enum McDirectionEnum Orientation;
 	float Velocity;
 	float Acceleration;
+	float JerkTime;
 	plcbit InRest;
 	struct McAcpTrakSegPositionType SegmentPosition;
 	double EncoderDiscrepancy;
@@ -995,6 +1030,8 @@ typedef struct McAcpTrakAdvSecAddShWithMovType
 	float Jerk;
 	enum McDirectionEnum Direction;
 	plcbit Virtual;
+	enum McAcpTrakShAddModeEnum Mode;
+	plcstring UserID[33];
 } McAcpTrakAdvSecAddShWithMovType;
 
 typedef struct McAcpTrakSecAddShWithMovInfoType
@@ -1006,6 +1043,7 @@ typedef struct McAcpTrakAdvSecAddShParType
 	enum McDirectionEnum Orientation;
 	float Deceleration;
 	plcbit Virtual;
+	plcstring UserID[33];
 } McAcpTrakAdvSecAddShParType;
 
 typedef struct McAcpTrakAsmInfoType
@@ -1151,9 +1189,10 @@ typedef struct McAcpTrakAdvShRemoveConParType
 {	float Deceleration;
 } McAcpTrakAdvShRemoveConParType;
 
-typedef struct McAcpTrakAdvShSetMoveParType
-{	float JerkFilterTime;
-} McAcpTrakAdvShSetMoveParType;
+typedef struct McAcpTrakShFilterParType
+{	enum McAcpTrakShFilterModeEnum Mode;
+	float JerkTime;
+} McAcpTrakShFilterParType;
 
 typedef struct McAcpTrakAdvConDeleteParType
 {	enum McAcpTrakConDeleteModeEnum Mode;
@@ -1187,6 +1226,7 @@ typedef struct McAcpTrakAdvShSwitchSecParType
 {	float Deceleration;
 	double StartPosition;
 	double EndPosition;
+	plcbit FlipOrientation;
 } McAcpTrakAdvShSwitchSecParType;
 
 typedef struct McAcpTrakShReadSecPosInfoType
@@ -1420,6 +1460,25 @@ typedef struct McASMCSSType
 	struct McASMCSSDiverterType Diverter;
 } McASMCSSType;
 
+typedef struct McASMShSSASSwOntoSegSecType
+{	enum McASMShSSASSwOntoSegSecScpEnum Scope;
+} McASMShSSASSwOntoSegSecType;
+
+typedef struct McASMShSSASAutAttType
+{	enum McASMShSSASAutAttFallbackEnum Fallback;
+} McASMShSSASAutAttType;
+
+typedef struct McASMShSSASRmnOnIntSecType
+{	enum McASMShSSASRmnOnIntSecScpEnum Scope;
+} McASMShSSASRmnOnIntSecType;
+
+typedef struct McASMShSSASType
+{	enum McASMShSSASEnum Type;
+	struct McASMShSSASSwOntoSegSecType SwitchOntoSegmentSector;
+	struct McASMShSSASAutAttType AutoAttach;
+	struct McASMShSSASRmnOnIntSecType RemainOnInternalSector;
+} McASMShSSASType;
+
 typedef struct McASMShDistResType
 {	double CollisionAvoidance;
 	double ErrorStopAvoidance;
@@ -1478,6 +1537,7 @@ typedef struct McASMShType
 	unsigned short MaximumDelegatedCommandCount;
 	float DecelerationAtAssemblyCommands;
 	enum McASMShConFunEnum ConvoyFunctionality;
+	struct McASMShSSASType SwitchSectorAfterStop;
 	struct McASMShDistResType DistanceReserves;
 	struct McASMShShSttType ShuttleStereotypes;
 	struct McASMShMagnPltCfgType MagnetPlateConfigurations;
@@ -1812,6 +1872,7 @@ typedef struct McCfgSegType
 	plcstring SegmentSectorReference[251];
 	enum McSEGSegSecDirEnum SegmentSectorDirection;
 	enum McSEGElongationCompEnum ElongationCompensation;
+	enum McSEGAsymmetricCurCompEnum AsymmetricCurrentCompensation;
 	struct McSEGStopReacType StopReaction;
 	struct McSEGSpdFltrType SpeedFilter;
 	struct McSEGPosLagMonType PositionControllerLagMonitor;
@@ -1833,23 +1894,6 @@ typedef struct MC_BR_SegSimOverride_AcpTrak
 	plcbit Busy;
 	plcbit Error;
 } MC_BR_SegSimOverride_AcpTrak_typ;
-
-typedef struct MC_BR_ShSetMotionParam_AcpTrak
-{
-	/* VAR_INPUT (analog) */
-	struct McAxisType* Axis;
-	struct McAcpTrakAdvShSetMoveParType AdvancedParameters;
-	/* VAR_OUTPUT (analog) */
-	signed long ErrorID;
-	/* VAR (analog) */
-	struct McInternalType Internal;
-	/* VAR_INPUT (digital) */
-	plcbit Execute;
-	/* VAR_OUTPUT (digital) */
-	plcbit Done;
-	plcbit Busy;
-	plcbit Error;
-} MC_BR_ShSetMotionParam_AcpTrak_typ;
 
 typedef struct MC_BR_AsmPowerOn_AcpTrak
 {
@@ -3267,11 +3311,27 @@ typedef struct MC_BR_AsmCamPrepare_AcpTrak
 	plcbit Error;
 } MC_BR_AsmCamPrepare_AcpTrak_typ;
 
+typedef struct MC_BR_ShSetMotionFilter_AcpTrak
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	struct McAcpTrakShFilterParType MotionFilterParameter;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Execute;
+	/* VAR_OUTPUT (digital) */
+	plcbit Done;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_ShSetMotionFilter_AcpTrak_typ;
+
 
 
 /* Prototyping of functions and function blocks */
 _BUR_PUBLIC void MC_BR_SegSimOverride_AcpTrak(struct MC_BR_SegSimOverride_AcpTrak* inst);
-_BUR_PUBLIC void MC_BR_ShSetMotionParam_AcpTrak(struct MC_BR_ShSetMotionParam_AcpTrak* inst);
 _BUR_PUBLIC void MC_BR_AsmPowerOn_AcpTrak(struct MC_BR_AsmPowerOn_AcpTrak* inst);
 _BUR_PUBLIC void MC_BR_AsmPowerOff_AcpTrak(struct MC_BR_AsmPowerOff_AcpTrak* inst);
 _BUR_PUBLIC void MC_BR_AsmSegGrpPowerOn_AcpTrak(struct MC_BR_AsmSegGrpPowerOn_AcpTrak* inst);
@@ -3347,6 +3407,7 @@ _BUR_PUBLIC void MC_BR_ShInteractCmd_AcpTrak(struct MC_BR_ShInteractCmd_AcpTrak*
 _BUR_PUBLIC void MC_BR_SegLimitErrorScope_AcpTrak(struct MC_BR_SegLimitErrorScope_AcpTrak* inst);
 _BUR_PUBLIC void MC_BR_ShSetUserId_AcpTrak(struct MC_BR_ShSetUserId_AcpTrak* inst);
 _BUR_PUBLIC void MC_BR_AsmCamPrepare_AcpTrak(struct MC_BR_AsmCamPrepare_AcpTrak* inst);
+_BUR_PUBLIC void MC_BR_ShSetMotionFilter_AcpTrak(struct MC_BR_ShSetMotionFilter_AcpTrak* inst);
 _BUR_PUBLIC unsigned short LLMInit(signed long sysInitPhase);
 
 
