@@ -63,15 +63,15 @@ TYPE
 		mcASMCSSASSOP_ON := 1 (*On - The segments are simulated on the PLC*)
 		);
 	McASMCSSCogSegTransCompEnum :
-		( (*Cogging at segment transition compensation selector setting*)
-		mcASMCSSCSTC_INACT := 0, (*Inactive - No compensation of cogging at segment transition*)
-		mcASMCSSCSTC_ACT := 1 (*Active - Compensation of cogging at segment transition*)
+		( (*Cogging compensation selector setting*)
+		mcASMCSSCSTC_INACT := 0, (*Inactive - No compensation of cogging*)
+		mcASMCSSCSTC_ACT := 1 (*Active - Compensation of cogging*)
 		);
 	McASMCSSCogSegTransCompActType : STRUCT (*Type mcASMCSSCSTC_ACT settings*)
-		UpperVelocityLimit : REAL; (*Beneath this limit the cogging compensation at segment transition will be applied. [m/s]*)
+		UpperVelocityLimit : REAL; (*Beneath this limit the cogging compensation will be applied. [m/s]*)
 	END_STRUCT;
-	McASMCSSCogSegTransCompType : STRUCT (*Compensation of cogging at segment transition to reduce lag and speed error*)
-		Type : McASMCSSCogSegTransCompEnum; (*Cogging at segment transition compensation selector setting*)
+	McASMCSSCogSegTransCompType : STRUCT (*Compensation of cogging at segment transition and within the segment to reduce lag and speed error*)
+		Type : McASMCSSCogSegTransCompEnum; (*Cogging compensation selector setting*)
 		Active : McASMCSSCogSegTransCompActType; (*Type mcASMCSSCSTC_ACT settings*)
 	END_STRUCT;
 	McASMCSSElongationCompEnum :
@@ -179,9 +179,10 @@ TYPE
 		AdditionalParameterSets : McASMCSSCPAPSType; (*Enable additional parameter sets that can be switched during runtime*)
 	END_STRUCT;
 	McASMCSSScpErrReacEnum :
-		( (*Setting for the minimal error reaction scope with segment errors*)
+		( (*Setting for the minimal error reaction scope for segment and encoder errors*)
 		mcASMCSSSER_ASM := 0, (*Assembly - Error reaction triggered for the whole assembly*)
-		mcASMCSSSER_SEG := 1 (*Segment - Error reaction triggered for the faulty segment, if type of error permits that*)
+		mcASMCSSSER_SEG := 1, (*Segment - Error reaction triggered for the faulty segment, if not an encoder error*)
+		mcASMCSSSER_SEGMENTADVANCED := 2 (*SegmentAdvanced - Error reaction triggered for the faulty segment and adjacent segments in case of encoder errors*)
 		);
 	McASMCSSPosCtrlLagMonEnum :
 		( (*Position controller lag monitor selector setting*)
@@ -201,12 +202,12 @@ TYPE
 	END_STRUCT;
 	McASMCSSType : STRUCT (*Common settings for all segments in the assembly*)
 		ActivateSegmentSimulationOnPLC : McASMCSSActSegSimOnPLCEnum; (*All segments of the assembly are simulated on the PLC*)
-		CoggingSegTransCompensation : McASMCSSCogSegTransCompType; (*Compensation of cogging at segment transition to reduce lag and speed error*)
+		CoggingSegTransCompensation : McASMCSSCogSegTransCompType; (*Compensation of cogging at segment transition and within the segment to reduce lag and speed error*)
 		ElongationCompensation : McASMCSSElongationCompEnum; (*Compensation of segment elongation due to change of temperature*)
 		StopReaction : McASMCSSStopReacType; (*Reaction in case of certain stop conditions*)
 		SpeedFilter : McASMCSSSpdFltrType; (*Filter for actual speed calculation*)
 		ControllerParameters : McASMCSSCtrlParType; (*Segment controller parameters*)
-		ScopeErrorReaction : McASMCSSScpErrReacEnum; (*Setting for the minimal error reaction scope with segment errors*)
+		ScopeErrorReaction : McASMCSSScpErrReacEnum; (*Setting for the minimal error reaction scope for segment and encoder errors*)
 		ShuttleIdentificationTime : UINT; (*Time period in which the identification of the shuttles must take place during power-on [s]*)
 		PositionControllerLagMonitor : McASMCSSPosCtrlLagMonType; (*Setting for the position controller lag monitor*)
 		Diverter : McASMCSSDiverterType; (*Diverter parameters*)
@@ -266,7 +267,9 @@ TYPE
 		mcASMSMPCST_ST8F1SA104 := 2, (*ST8F1SA104 - 5 magnet poles skewed on both sides of the shuttle*)
 		mcASMSMPCST_ST8F1SA106 := 3, (*ST8F1SA106 - 5 magnet poles skewed on one side of the shuttle*)
 		mcASMSMPCST_ST8F1SA201 := 4, (*ST8F1SA201 - 10 magnet poles on both sides of the shuttle*)
+		mcASMSMPCST_ST8F1SC201 := 7, (*ST8F1SC201 - 10 magnet poles on both sides of the shuttle*)
 		mcASMSMPCST_ST8F1SA203 := 5, (*ST8F1SA203 - 10 magnet poles on one side of the shuttle*)
+		mcASMSMPCST_ST8F1SC203 := 8, (*ST8F1SC203 - 10 magnet poles on one side of the shuttle*)
 		mcASMSMPCST_ST8F1SB308 := 6 (*ST8F1SB308 - 21 magnet poles on one side of the shuttle*)
 		);
 	McASMShMagnPltCfgShTypType : STRUCT (*Parameters of the magnet plate*)
@@ -684,6 +687,12 @@ TYPE
 		JerkFilter : McSSTJerkFltrType; (*Jerk filter*)
 		UserData : McSSTUsrDatType; (*Defines the user data*)
 		CollisionAvoidance : McSSTColAvType; (*Parameter settings for the collision avoidance*)
+		StateTransitions : McSSTStatTransType; (*Parameter settings for state transitions*)
+	END_STRUCT;
+	McCfgShJerkFiltType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_SH_JERK_FILT*)
+		JerkFilter : McSSTJerkFltrType; (*Jerk filter*)
+	END_STRUCT;
+	McCfgShStateTransType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_SH_STATE_TRANS*)
 		StateTransitions : McSSTStatTransType; (*Parameter settings for state transitions*)
 	END_STRUCT;
 	McSEGSegSecDirEnum :

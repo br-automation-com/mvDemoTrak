@@ -17,8 +17,8 @@
   <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7" />
   <TaskClass Name="Cyclic#8">
-    <Task Name="FileExplor" Source="mappFileExplorer.FileExplorer.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="UsbDevice" Source="USBdevice.UsbDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="FileExplor" Source="mappFileExplorer.FileExplorer.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="NetDevice" Source="NETdevice.NetDevice.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <DataObjects>
@@ -56,6 +56,7 @@
     <BinaryObject Name="CfgAlHist" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="TC" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="CfgAlList" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="Hierarchy" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="McBase" Source="Libraries.McBase.lby" Memory="UserROM" Language="binary" Debugging="true" />

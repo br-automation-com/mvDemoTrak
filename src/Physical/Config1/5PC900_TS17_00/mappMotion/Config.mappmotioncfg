@@ -5,6 +5,23 @@
     <Group ID="Processing">
       <Property ID="ProcessingTaskClass" Value="1" />
     </Group>
+    <Group ID="Logger">
+      <Selector ID="SelectiveLogging" Value="Used">
+        <Selector ID="AdministrativeCommands" Value="Selective">
+          <Property ID="CallerInstance" Value="Suppressed" />
+          <Property ID="AdditionalInfo" Value="Suppressed" />
+        </Selector>
+        <Selector ID="MovementCommands" Value="Selective">
+          <Property ID="CallerInstance" Value="Suppressed" />
+          <Property ID="AdditionalInfo" Value="Suppressed" />
+        </Selector>
+        <Selector ID="InformationalCommands" Value="Selective">
+          <Property ID="CallerInstance" Value="Suppressed" />
+          <Property ID="AdditionalInfo" Value="Suppressed" />
+        </Selector>
+        <Property ID="SuppressSubcomponents" Value="Inactive" />
+      </Selector>
+    </Group>
     <Group ID="SharedAlarms">
       <Selector ID="Assembly" Value="MpAlarmX">
         <Group ID="mapp.AlarmX.Core.Configuration">
@@ -31,6 +48,9 @@
           </Group>
         </Group>
       </Selector>
+    </Group>
+    <Group ID="McAcpDrv">
+      <Property ID="POWERLINKCyclesPerParID" Value="2" />
     </Group>
   </Element>
 </Configuration>

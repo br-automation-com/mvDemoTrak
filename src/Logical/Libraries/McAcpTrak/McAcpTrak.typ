@@ -162,7 +162,8 @@ TYPE
 	(
 		mcACPTRAK_BARRIER_OPEN,			(*open the barrier*)
 		mcACPTRAK_BARRIER_CLOSE,		(*close the barrier*)
-		mcACPTRAK_BARRIER_ADD_TICKETS	(*adds tickets to or subtracts tickets from the barrier*)
+		mcACPTRAK_BARRIER_ADD_TICKETS,	(*adds tickets to or subtracts tickets from the barrier*)
+		mcACPTRAK_BARRIER_CLEAR_TICKETS	(*close the barrier, clear the list of accepted shuttles, and reset the number of tickets to zero*)
 	);
 
 	McAcpTrakBarrierStatusEnum :
@@ -295,8 +296,10 @@ TYPE
 	END_STRUCT;
 
 	McAcpTrakShManeuverInfoType : STRUCT
-		Type : McAcpTrakShManeuverTypeEnum := mcACPTRAK_MANEUVER_NONE; (*maneuver type*)
-		Reason : McAcpTrakShManeuverReasonEnum := mcACPTRAK_REASON_NONE; (*maneuver reason*)
+		Type : McAcpTrakShManeuverTypeEnum; (*maneuver type*)
+		Reason : McAcpTrakShManeuverReasonEnum; (*maneuver reason*)
+		Shuttle : McAxisType; (*Reference to a shuttle*)
+		Barrier : McProcessPointType; (*Reference to a barrier*)
 	END_STRUCT;
 
 	McAcpTrakShCurrentValuesType : STRUCT
@@ -393,6 +396,13 @@ TYPE
 		Segment : McSegmentType; (*a segment the shuttle was located on*)
 		Name : STRING[32]; (*name of the segment the shuttle was located on*)
 		Position : LREAL; (*position of the shuttle on the segment*)
+	END_STRUCT;
+
+	McAcpTrakSegIntervalType : STRUCT
+		Segment : McSegmentType; (*a segment the shuttle was located on*)
+		Name : STRING[32]; (*name of the segment the shuttle was located on*)
+		StartPosition : LREAL; (*position of the shuttle on the segment*)
+		EndPosition : LREAL; (*position of the shuttle on the segment*)
 	END_STRUCT;
 
 	McAcpTrakSecPositionType : STRUCT
@@ -528,7 +538,8 @@ TYPE
 		Virtual : BOOL;				(*Shuttle is virtual*)
 		Controlled : BOOL;			(*Shuttle is controlled*)
 		PLCopenState : McAxisPLCopenStateEnum; (*PLCopen state*)
-		SegmentName : STRING[32];		(*Name of the segment*)
+		SegmentName : STRING[32];	(*Name of the segment*)
+		SegmentID : UINT;			(*Index of the segment within the assembly*)
 		SegmentPosition : LREAL;	(*Position on the segment*)
 		Frame : McFrameType;
 		SectorName : STRING[32]; 	(*Name of the user defined sector*)
@@ -539,7 +550,7 @@ TYPE
 		ShuttleIndex : UDINT;		(*Must be != 0 to copy a specific shuttle to AsmShuttleData*)
 		Trigger : McAcpTrakCopyShDataTriggerEnum; (*Trigger for saving shuttle data*)
 		DataAddress : UDINT; 		(*Append array address of userdata*)
-		DataSize : UDINT; 		(*Size of array of userdata*)
+		DataSize : UDINT; 			(*Size of array of userdata*)
 	END_STRUCT;
 
 	McAcpTrakSegInfoType : STRUCT
@@ -576,7 +587,9 @@ TYPE
 		mcACPTRAK_SEG_ERROR_COMMAND,
 		mcACPTRAK_SEG_ERROR_SEGMENT,
 		mcACPTRAK_SEG_ERROR_ASSEMBLY,
-		mcACPTRAK_SEG_ERROR_CHANNEL
+		mcACPTRAK_SEG_ERROR_CHANNEL,
+		mcACPTRAK_SEG_ERROR_UNOBSERVABLE,
+		mcACPTRAK_SEG_ERROR_ENCDIFF
 	);
 
 	McAcpTrakSegErrorGripperInfoType : STRUCT
@@ -587,6 +600,7 @@ TYPE
 		Shuttle : McAxisType; (*the error shuttle*)
 		ShuttleID : UDINT; (*ID of the shuttle*)
 		UserID : STRING[32]; (*User ID of the shuttle*)
+		Position : LREAL; (*Position of the shuttle on the segment*)
 	END_STRUCT;
 
 	McAcpTrakSegErrorInfoType : STRUCT
@@ -668,10 +682,11 @@ TYPE
 		Mode: McAcpTrakShAddModeEnum;	(*Mode selector for adding shuttles*)
 		UserID : STRING[32]; 		(*User ID of the shuttle*)
 	END_STRUCT;
-	
+
 	 McAcpTrakShAddModeEnum :
 	 (
-	 	 mcACPTRAK_ADD_IMMEDIATE 		(*add immediately*)
+	 	mcACPTRAK_ADD_IMMEDIATE, 	(*add immediately*)
+	 	mcACPTRAK_ADD_CATCH			(*add and catch*)
 	 );
 
 	 McAcpTrakSecAddShWithMovInfoType : STRUCT
@@ -685,7 +700,7 @@ TYPE
 		Virtual : BOOL; 				(*Create a virtual shuttle if true*)
 		UserID : STRING[32]; 			(*User ID of the shuttle*)
 	END_STRUCT;
-	
+
 	 McAcpTrakAsmInfoType : STRUCT
 	 	CommunicationReady : BOOL; (*"Network" of all segments of the assembly is initialized and ready for communication*)
 		ReadyForPowerOn : BOOL; (*the controllers of all segments of the assembly are ready to be switched on*)
@@ -898,10 +913,11 @@ TYPE
 		Mode : McAcpTrakShFilterModeEnum; (*set mode selector*)
 		JerkTime : REAL; (*jerk filter time*)
 	END_STRUCT;
-	
+
 	McAcpTrakShFilterModeEnum :
 	(
-	 	 mcACPTRAK_SET_IMMEDIATE 		(*set immediately*)
+	 	 mcACPTRAK_SET_IMMEDIATE, 		(*set immediately*)
+	 	 mcACPTRAK_SET_AVOID_ERRORSTOP	(*set when the change won't trigger an ErrorStop*)
 	);
 
 	McAcpTrakConDeleteModeEnum :
@@ -1018,8 +1034,108 @@ TYPE
 	McAcpTrakAdvSegSimParType : STRUCT
 		SegmentEnable : BOOL; 				(*override the segment enable bit*)
 		MovementDetected : BOOL; 			(*override on movement detected bit of segment*)
+		UnknownMovementDetected : BOOL; 	(*override on unknown movement detected bit of segment*)
 		PositionLag : LREAL; 				(*override position lag of all segment channels*)
 	END_STRUCT;
 
+	McAcpTrakAdvRouteInfoValidEnum :
+	(
+		mcACPTRAK_ROUTE_VALID,           (* no failure computing the route *)
+		mcACPTRAK_ROUTE_DIFF_WORKSPACES, (* source sector or destination sector or transit point not contained in the same workspace  *)
+		mcACPTRAK_ROUTE_OPTS_NOT_SATISF, (* routing options not satisfiable *)
+		mcACPTRAK_ROUTE_DST_NOT_IN_INT,  (* destination position not in destination sector interval *)
+		mcACPTRAK_ROUTE_TP_NOT_IN_INT,   (* transit point not in destination sector interval *)
+		mcACPTRAK_ROUTE_NO_ROUTE,        (* no route *)
+		mcACPTRAK_ROUTE_CON_LONG_SRC,    (* convoy is longer than source sector *)
+		mcACPTRAK_ROUTE_CON_LONG_DST,    (* convoy is longer than destination sector *)
+		mcACPTRAK_ROUTE_CON_EXTR_DSTPOS  (* invalid position on destination sector due to convoy's maximum position offsets *)
+	);
+
+	McAcpTrakAdvRouteInfoSectorType : STRUCT
+  		RouteLength : LREAL; (* length of route *)
+  		HasDiverter : BOOL; (* true iff route crosses a diverter*)
+  	END_STRUCT;
+  	McAcpTrakAdvRouteInfoSegmentType : STRUCT
+    	Blocked : BOOL;
+  		NumberDisabled : UDINT; (* number of disabled segments on the route *)
+    	NumberErrorStop : UDINT; (* number of segments in error stop on the route *)
+  	END_STRUCT;
+  	McAcpTrakAdvRouteInfoShuttleType : STRUCT
+    	Blocked : BOOL;
+		NumberDisabled : UDINT; (* number of disabled shuttles on the route *)
+    	NumberErrorStop : UDINT; (* number of shuttles in error stop on the route *)
+  	END_STRUCT;
+  	McAcpTrakAdvRouteInfoBarrierType : STRUCT
+		Blocked : BOOL; (* false iff all user barriers along route are mcACPTRAK_BARRIER_OPENED *)
+  	END_STRUCT;
+
+	McAcpTrakAdvRouteInfoType : STRUCT
+		Validity       : McAcpTrakAdvRouteInfoValidEnum;
+		SectorInfo     : McAcpTrakAdvRouteInfoSectorType;
+		SegmentInfo    : McAcpTrakAdvRouteInfoSegmentType;
+		ShuttleInfo    : McAcpTrakAdvRouteInfoShuttleType;
+		BarrierInfo    : McAcpTrakAdvRouteInfoBarrierType;
+		Blocked       : BOOL; (*true iff any of the info Blocked outputs is true*)
+  	END_STRUCT;
+
+	McAcpTrakAdvCopySegDataType : STRUCT
+		SegmentID : UDINT;		                   (*Index of segment. Ignored if and only if mcACPTRAK_SEG_DATA_ALL is chosen*)
+		Trigger : McAcpTrakCopySegDataTriggerEnum; (*Trigger for saving data*)
+		DataAddress : UDINT; 					   (*Address of first element of an array of type McAcpTrakSegmentData*)
+		DataSize : UDINT; 						   (*Size of the array of type McAcpTrakSegmentData*)
+	END_STRUCT;
+	McAcpTrakCopySegDataInfoType : STRUCT
+		TimeStamp : McAcpTrakDateTimeType;
+	END_STRUCT;
+  	McAcpTrakCopySegDataModeEnum :
+	(
+		mcACPTRAK_SEG_DATA_ALL, 		(*copy all segments' data*)
+		mcACPTRAK_SEG_DATA_SPECIFIC		(*copy specific segment's data*)
+	);
+	McAcpTrakCopySegDataTriggerEnum:
+	(
+		mcACPTRAK_SEG_DATA_TRIGGER_IMM	(*copying is started immediately*)
+	);
+	McAcpTrakSegmentData : STRUCT (*Segment*)
+		SegmentID : UDINT;                         (*Index of the segment*)
+		PLCopenState : McAcpTrakPLCopenStateEnum;  (*PLCopen state*)
+		ErrorReason : McAcpTrakSegErrorReasonEnum; (*Error reason*)
+		CommunicationReady : BOOL; 	               (*Segment has a network connection*)
+		ReadyForPowerOn : BOOL; 	               (*Controller can be switched on*)
+		PowerOn : BOOL; 			               (*Controller is switched on*)
+		SegmentEnable : BOOL; 		               (*Segment hardware input "Enable" is active*)
+		MovementDetected: BOOL; 	               (*Movement is detected on segment*)
+		ErrorInitiator: BOOL;                      (*The segment is the initiator of the error reaction*)
+	END_STRUCT;
+
+	McAcpTrakAdvGetPositionParType : STRUCT
+		Position	  : LREAL; (*position on source component*)
+		StartPosition : LREAL; (*Start position of the sector position interval for search*)
+		EndPosition : LREAL; (*End position of the sector position interval for search*)
+	END_STRUCT;
+
+	McAcpTrakGetPositionInfoType : STRUCT
+		TargetPosition : McAcpTrakTargetPositionType; (*orientation on target component*)
+		SegmentPosition : McAcpTrakSegPositionType; (*lowest index segment and segment position*)
+	END_STRUCT;
+
+	McAcpTrakTargetPositionType : STRUCT
+		Valid: BOOL; (*values of "Position" and "Orientation" are valid*)
+		Position : LREAL; (*position on target component*)
+		Orientation : McDirectionEnum; (*orientation on target component*)
+	END_STRUCT;
+
+	McAcpTrakDualTrackInfoType : STRUCT
+		Segment1 : McAcpTrakSegIntervalType; (*segment interval of the first segment of the dual track area*)
+		Segment2 : McAcpTrakSegIntervalType; (*segment interval of the second segment of the dual track area*)
+	END_STRUCT;
+
+	McAcpTrakShReadRecInfoTrigEnum :
+	(
+		mcACPTRAK_UNCONTROLLEDERRORSTOP (*Recovery info saved in the cycle in which the shuttle was controlled and not in error stop, but became uncontrolled or had an error stop in the following cycle*)
+	);
+	McAcpTrakAdvShReadRecInfoParType : STRUCT
+		Trigger : McAcpTrakShReadRecInfoTrigEnum; (*Trigger of the recovery info update*)
+	END_STRUCT;
 END_TYPE
 
