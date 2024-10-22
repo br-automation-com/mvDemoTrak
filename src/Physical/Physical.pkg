@@ -3,6 +3,5 @@
 <Physical xmlns="http://br-automation.co.at/AS/Physical">
   <Objects>
     <Object Type="Configuration">Config1</Object>
-    <Object Type="Configuration">CP3686X</Object>
   </Objects>
 </Physical>
