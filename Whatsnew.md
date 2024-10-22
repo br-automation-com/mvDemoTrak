@@ -1,3 +1,16 @@
+V1.2.4
+- Repair defect project (missing files)
+- File Explorer did not show *.gz files
+- Remove config with X20 CPU
+
+V1.2.3
+- Change mappMotion version to V5.27.1
+- Change TrakDiag version to V3.0.0
+
+V1.2.2
+- Change mappMotion version to V5.24
+- Change TrakDiag version to V2.7.1
+
 V1.2.1
 - Task in #8 were errornously deactivated
 - add new FTP user 'service'/'service' to access Folder \web\Diagnosis
